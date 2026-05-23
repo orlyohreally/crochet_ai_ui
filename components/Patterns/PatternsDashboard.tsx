@@ -3,10 +3,10 @@ import { PatternDashboardData } from "@/lib/interfaces";
 import Dashboard from "@/components/Dashboard";
 import PatternList from "./PatternsList";
 
-export default function Patterns({
+export default function PatternsDashboard({
   patternsDashboardData,
   page = 1,
-  pageSize = 2,
+  pageSize,
 }: {
   page: number;
   pageSize: number;

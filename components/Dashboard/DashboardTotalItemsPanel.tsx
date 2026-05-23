@@ -1,10 +1,10 @@
 "use client";
 
-export default function Dashboard({
+export default function DashboardTotalItemsPanel({
   children,
   handlePageSizeChange,
   totalItems,
-  pageSize = 2,
+  pageSize,
 }: {
   children: React.ReactNode;
   handlePageSizeChange: (newPageSize: number) => void;

@@ -9,7 +9,7 @@ export default function Dashboard({
   totalItems,
   totalItemsSlot,
   page = 1,
-  pageSize = 2,
+  pageSize = 20,
 }: {
   children: React.ReactNode;
   totalItemsSlot: React.ReactNode;

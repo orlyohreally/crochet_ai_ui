@@ -7,7 +7,7 @@ import { Pattern } from "@/lib/interfaces";
 
 export default function PatternListItem({ pattern }: { pattern: Pattern }) {
   const DEFAULT_IMAGE =
-    "https://res.cloudinary.com/doojrsxjl/image/upload/v1778394144/Gemini_Generated_Image_nlg962nlg962nlg9_uqtcyx.png";
+    "https://res.cloudinary.com/doojrsxjl/image/upload/v1779574348/copy_of_gemini_generated_image_nlg962nlg962nlg9_uqtcyx.png";
 
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-xs border border-gray-100 group">
@@ -17,6 +17,7 @@ export default function PatternListItem({ pattern }: { pattern: Pattern }) {
             src={pattern.imageUrl || DEFAULT_IMAGE}
             alt={pattern.name}
             fill
+            priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
@@ -26,9 +27,9 @@ export default function PatternListItem({ pattern }: { pattern: Pattern }) {
         <h3 className="font-bold text-gray-900 text-lg">{pattern.name}</h3>
 
         <div className="flex flex-wrap gap-2">
-          {pattern.labels.slice(0, 3).map((label, index) => (
+          {pattern.labels.slice(0, 3).map((label) => (
             <span
-              key={index}
+              key={label.slug}
               className="px-2.5 py-1 bg-gray-50 text-gray-500 text-[10px] font-bold uppercase rounded-lg border border-gray-100 flex items-center gap-1"
             >
               {label.name}

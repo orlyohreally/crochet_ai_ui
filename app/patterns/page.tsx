@@ -7,14 +7,22 @@ import { patterns } from "@/lib/patterns";
 import LoadingPatternsList from "./loading";
 import PatternsDashboard from "@/components/Patterns/PatternsDashboard";
 
+function parsePositiveInteger(value: string, fallback: number) {
+  const parsedValue = parseInt(value, 10);
+  if (Number.isNaN(parsedValue) || parsedValue < 1) {
+    return fallback;
+  }
+  return parsedValue;
+}
+
 export default async function Patterns({
   searchParams,
 }: {
   searchParams: Promise<{ page?: string; page_size?: string }>;
 }) {
   const { page = "1", page_size: pageSize = "20" } = await searchParams;
-  const currentPage = parseInt(page, 10);
-  const currentPageSize = parseInt(pageSize, 10);
+  const currentPage = parsePositiveInteger(page, 1);
+  const currentPageSize = parsePositiveInteger(pageSize, 20);
   let patternsList;
   try {
     patternsList = await patterns({

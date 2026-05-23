@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
-export default function NextPageLink({
+export default function PreviousPageLink({
   href,
   isDisabled,
 }: {
@@ -16,14 +16,14 @@ export default function NextPageLink({
   if (isDisabled) {
     return (
       <span className={className} aria-disabled="true">
-        <ChevronRightIcon className="size-5" />
+        <ChevronLeftIcon className="size-5" />
       </span>
     );
   }
 
   return (
     <Link href={href} className={className}>
-      <ChevronRightIcon className="size-5" />
+      <ChevronLeftIcon className="size-5" />
     </Link>
   );
 }

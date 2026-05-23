@@ -4,7 +4,7 @@ import { Pattern } from '@/lib/interfaces';
 
 import PatternListItem from './PatternsListItem';
  
-export default function Patterns({
+export default function PatternsList({
   patterns,
 }: {
   patterns: Pattern[]
