@@ -1,11 +1,22 @@
 export interface Label {
-    name: string;
-    slug: string;
+  name: string;
+  slug: string;
 }
 
 export interface Category {
-    name: string;
-    slug: string;
+  name: string;
+  slug: string;
+}
+
+export interface PurchaseSources {
+  marketplace: string;
+  url: string;
+}
+
+export interface Author {
+  fullName: string;
+  profilePicture: string;
+  slug: string;
 }
 
 export interface Pattern {
@@ -16,6 +27,10 @@ export interface Pattern {
   category: Category;
   labels: Label[];
   isFree: boolean;
+  purchaseSources: PurchaseSources[];
+  createdAt: string;
+  updatedAt: string;
+  author: Author;
 }
 
 

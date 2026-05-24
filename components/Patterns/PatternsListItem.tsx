@@ -4,17 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Pattern } from "@/lib/interfaces";
+import { DEFAULT_PATTERN_IMAGE } from "@/lib/constants";
 
 export default function PatternListItem({ pattern }: { pattern: Pattern }) {
-  const DEFAULT_IMAGE =
-    "https://res.cloudinary.com/doojrsxjl/image/upload/v1779574348/copy_of_gemini_generated_image_nlg962nlg962nlg9_uqtcyx.png";
-
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-xs border border-gray-100 group">
       <Link href={`/patterns/${pattern.slug}`}>
         <div className="h-64 w-full overflow-hidden relative">
           <Image
-            src={pattern.imageUrl || DEFAULT_IMAGE}
+            src={pattern.imageUrl || DEFAULT_PATTERN_IMAGE}
             alt={pattern.name}
             fill
             priority
