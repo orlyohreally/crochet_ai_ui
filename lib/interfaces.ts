@@ -1,3 +1,7 @@
+export type NestedDictionary = {
+  [key: string]: string | NestedDictionary;
+};
+
 export interface Label {
     name: string;
     slug: string;

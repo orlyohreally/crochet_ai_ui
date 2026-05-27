@@ -1,0 +1,23 @@
+{
+  "mainMenu": {
+    "about": "About",
+    "patterns": "Patterns"
+  },
+  "patternDashboard": {
+    "allPatterns": "All patterns",
+    "itemsPerPage": "Items per page"
+  },
+  "notFound": {
+    "pageNotFound": "Page not found",
+    "pageDoesNotExistErrorMessage": "It looks like this page does not exist yet. The page may have moved, or the link might be broken.",
+    "back": "Back to home page",
+    "viewAllPatterns": "View all patterns"
+  },
+  "patternDashboardErrorPage": {
+    "title": "Something is not right",
+    "invalidPageErrorMessage": "We couldn't find that page of patterns. It might have been moved or deleted.",
+    "genericErrorMessage": "We're having trouble reaching the database. A quick refresh might fix it.",
+    "tryAgain": "Try again",
+    "back": "Back to Start"
+  }
+}

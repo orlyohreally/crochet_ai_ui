@@ -1,6 +1,14 @@
-import Link from 'next/link'
+"use client";
+
+import Link from "next/link";
+
+import { useLang } from "@/context/LangContext";
+import { NestedDictionary } from "@/lib/interfaces";
 
 export default function NotFound() {
+  const { dict } = useLang();
+  const dictNotFound = dict.notFound as NestedDictionary;
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 text-center">
       {/* Visual Number with subtle styling */}
@@ -10,12 +18,11 @@ export default function NotFound() {
 
       <div className="relative">
         <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-          Page Not Found
+          {dictNotFound.pageNotFound as string}
         </h2>
-        
+
         <p className="text-gray-500 max-w-md mb-10 leading-relaxed text-lg">
-          It looks like this page does not exist yet. The page may have moved, 
-          or the link might be broken.
+          {dictNotFound.pageDoesNotExistErrorMessage as string}
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -23,17 +30,17 @@ export default function NotFound() {
             href="/"
             className="px-10 py-4 bg-gray-900 text-white rounded-full font-bold hover:bg-black transition-all hover:shadow-xl active:scale-95"
           >
-            Back to Dashboard
+            {dictNotFound.back as string}
           </Link>
-          
+
           <Link
             href="/patterns"
             className="px-10 py-4 text-gray-600 font-semibold hover:text-pink-500 transition-colors"
           >
-            View All Patterns
+            {dictNotFound.viewAllPatterns as string}
           </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }

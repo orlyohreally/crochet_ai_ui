@@ -1,0 +1,24 @@
+{
+  "mainMenu": {
+    "about": "О проекте",
+    "patterns": "Схемы"
+  },
+
+  "patternDashboard": {
+    "allPatterns": "Все схемы",
+    "itemsPerPage": "Элементов на странице"
+  },
+  "notFound": {
+    "pageNotFound": "Страница не найдена",
+    "pageDoesNotExistErrorMessage": "Похоже, этой страницы ещё не существует. Возможно, она была перемещена или ссылка устарела.",
+    "back": "На главную",
+    "viewAllPatterns": "Посмотреть все схемы"
+  },
+  "patternDashboardErrorPage": {
+    "title": "Что-то пошло не так",
+    "invalidPageErrorMessage": "Нам не удалось найти эту страницу с схемой. Возможно, она была перемещена или удалена.",
+    "genericErrorMessage": "Не удаётся подключиться к базе данных. Быстрое обновление страницы может помочь.",
+    "tryAgain": "Попробовать снова",
+    "back": "Вернуться в начало"
+  }
+}
