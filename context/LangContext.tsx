@@ -8,6 +8,7 @@ import React, {
 
 import { I18N_CONFIG, Locale } from "@/i18n.config";
 import { NestedDictionary } from "@/lib/interfaces";
+import { setLanguageCookie } from "@/app/actions";
 
 interface LangContextType {
   dict: NestedDictionary;
@@ -35,10 +36,9 @@ export function LangProvider({
   const setLang = (newLang: Locale) => {
     if (newLang === lang) return;
 
-    document.cookie = `${I18N_CONFIG.cookieName}=${newLang}; path=/; max-age=${I18N_CONFIG.cookieMaxAge}; SameSite=${I18N_CONFIG.cookieSameSite}`;
-
-    startTransition(() => {
+    startTransition(async () => {
       setLangState(newLang);
+      await setLanguageCookie(newLang);
 
       window.location.reload();
     });

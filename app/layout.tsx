@@ -5,7 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { LangProvider } from "@/context/LangContext";
-import { getPlainDictionary } from "@/utils/proxy"; // Use our new helper!
+import { getPlainDictionary } from "@/utils/translations";
 import { I18N_CONFIG, Locale } from "@/i18n.config";
 
 import LanguageSwitcher from "@/components/LanguageSwitcher";

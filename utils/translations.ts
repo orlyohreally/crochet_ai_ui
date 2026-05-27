@@ -1,15 +1,14 @@
-import { Locale } from "@/i18n.config";
+import { Locale, I18N_CONFIG } from "@/i18n.config";
 import { NestedDictionary } from "@/lib/interfaces";
 import "server-only";
 
 const loaders = {
   en: () => import("@/dictionaries/en.json").then((m) => m.default),
   ru: () => import("@/dictionaries/ru.json").then((m) => m.default),
-  he: () => import("@/dictionaries/ru.json").then((m) => m.default),
 };
 
-export async function createTranslationProxy(lang: Locale): Promise<NestedDictionary> {
-  const baseData = await (loaders[lang] ? loaders[lang] : loaders["ru"])();
+async function createTranslationProxy(lang: Locale): Promise<NestedDictionary> {
+  const baseData = await (loaders[lang] ? loaders[lang] : loaders[I18N_CONFIG.defaultLocale])();
 
   // Recursive handler to proxy nested object translations
   const createRecursiveProxy = (targetData: NestedDictionary, path: string = ""): NestedDictionary => {
