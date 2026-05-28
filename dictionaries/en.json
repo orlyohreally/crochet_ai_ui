@@ -45,5 +45,13 @@
     "usageSecText": "Our smart crochet and knitting discovery engine is provided for your personal, non-commercial crafting inspiration. You agree not to scrape, exploit, or disrupt our backend AI infrastructure or database pools.",
     "aiSecTitle": "2. AI-Generated Content Liability",
     "aiSecText": "Patterns and search profiles compiled or modified via our AI assistance modules are provided 'as is' for creative guidance. While we aim for absolute clarity, knitka.ai does not guarantee error-free stitch instructions or yarn matching calculations."
+  },
+  "about": {
+    "title": "About knitka.ai",
+    "subtitle": "Where traditional crafting meets modern AI innovation.",
+    "storyTitle": "Our Story",
+    "storyText": "knitka.ai was born out of a passion for needlework and a desire to make crafting more accessible. We are building an intelligent portal that uses generative AI to help crafters search, organize, and even generate smart crochet and knitting patterns effortlessly.",
+    "missionTitle": "The Mission",
+    "missionText": "To empower makers worldwide by bridging the gap between centuries-old textile traditions and state-of-the-art technology, keeping the joy of handmade creation alive in a digital world."
   }
 }
