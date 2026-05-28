@@ -55,15 +55,7 @@ export function LangProvider({
         localeLabels: I18N_CONFIG.localeLabels,
       }}
     >
-      <div
-        className={
-          isPending
-            ? "opacity-70 pointer-events-none transition-opacity duration-200"
-            : ""
-        }
-      >
-        {children}
-      </div>
+      {children}
     </LangContext.Provider>
   );
 }

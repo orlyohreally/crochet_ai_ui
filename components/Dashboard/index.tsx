@@ -28,7 +28,7 @@ export default function Dashboard({
   }
 
   return (
-    <main className="p-8">
+    <div className="p-8">
       <DashboardTotalItemsPanel
         totalItems={totalItems}
         pageSize={pageSize}
@@ -44,6 +44,6 @@ export default function Dashboard({
         currentPage={page}
         pageSize={pageSize}
       />
-    </main>
+    </div>
   );
 }

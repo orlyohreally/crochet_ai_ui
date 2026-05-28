@@ -10,6 +10,7 @@ import { I18N_CONFIG, Locale } from "@/i18n.config";
 
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MainMenu from "@/components/MainMenu";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,13 +47,15 @@ export default async function RootLayout({
       lang={lang}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-slate-50/30 m-0 p-0">
         <LangProvider initialLang={lang} initialDict={translationDict}>
           <MainMenu>
-            <LanguageSwitcher currentLocale={lang} />
+            <LanguageSwitcher />
           </MainMenu>
 
-          {children}
+          <main className="w-full">{children}</main>
+
+          <Footer />
         </LangProvider>
       </body>
     </html>

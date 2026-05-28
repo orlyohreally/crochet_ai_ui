@@ -22,5 +22,11 @@
     "invalidPageErrorMessage": "We couldn't find that page of patterns. It might have been moved or deleted.",
     "title": "Something is not right",
     "tryAgain": "Try again"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookieNote": "We use a strictly necessary cookie to remember your language preference."
   }
 }
