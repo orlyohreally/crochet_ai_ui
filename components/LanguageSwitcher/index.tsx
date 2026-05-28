@@ -4,12 +4,8 @@ import { ChangeEvent } from "react";
 import { Locale } from "@/i18n.config";
 import { useLang } from "@/context/LangContext";
 
-export default function LanguageSwitcher({
-  currentLocale,
-}: {
-  currentLocale: Locale;
-}) {
-  const { isPending, locales, localeLabels, setLang } = useLang();
+export default function LanguageSwitcher() {
+  const { isPending, locales, localeLabels, setLang, lang: currentLocale } = useLang();
 
   const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as Locale;
