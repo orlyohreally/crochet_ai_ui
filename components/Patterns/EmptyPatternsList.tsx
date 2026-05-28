@@ -12,7 +12,7 @@ export default function EmptyPatternsList() {
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full bg-slate-50 border border-slate-200/60 rounded-xl p-4 text-center sm:text-left">
       <div className="flex flex-col sm:flex-row items-center gap-3">
-        <MagnifyingGlassIcon className="size-12" />
+        <MagnifyingGlassIcon className="size-12" aria-hidden="true" />
         <div>
           <h4 className="text-sm font-bold text-slate-900">
             {patternDashboardDict.emptyTitle as string}
