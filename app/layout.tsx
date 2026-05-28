@@ -30,7 +30,6 @@ export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
 }>) {
   // Fetch the dictionary strings
   const cookieStore = await cookies();
