@@ -5,19 +5,22 @@
   },
   "patternDashboard": {
     "allPatterns": "All patterns",
+    "clearFilters": "Clear all filters",
+    "emptyDescription": "We couldn't find any matching crochet patterns. Try adjusting your search filters or browse our classic collections.",
+    "emptyTitle": "No patterns found",
     "itemsPerPage": "Items per page"
   },
   "notFound": {
-    "pageNotFound": "Page not found",
-    "pageDoesNotExistErrorMessage": "It looks like this page does not exist yet. The page may have moved, or the link might be broken.",
     "back": "Back to home page",
+    "pageDoesNotExistErrorMessage": "It looks like this page does not exist yet. The page may have moved, or the link might be broken.",
+    "pageNotFound": "Page not found",
     "viewAllPatterns": "View all patterns"
   },
   "patternDashboardErrorPage": {
-    "title": "Something is not right",
-    "invalidPageErrorMessage": "We couldn't find that page of patterns. It might have been moved or deleted.",
+    "back": "Back to Start",
     "genericErrorMessage": "We're having trouble reaching the database. A quick refresh might fix it.",
-    "tryAgain": "Try again",
-    "back": "Back to Start"
+    "invalidPageErrorMessage": "We couldn't find that page of patterns. It might have been moved or deleted.",
+    "title": "Something is not right",
+    "tryAgain": "Try again"
   }
 }
