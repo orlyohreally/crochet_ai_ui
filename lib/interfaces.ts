@@ -20,6 +20,10 @@ export interface Pattern {
   category: Category;
   labels: Label[];
   isFree: boolean;
+  level: string | null;
+  mainHookSize: string | null;
+  mainYarnBrand: string | null;
+  mainYarnLineName: string | null;
 }
 
 

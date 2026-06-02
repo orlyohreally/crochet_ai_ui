@@ -3,24 +3,44 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Pattern } from "@/lib/interfaces";
+import { NestedDictionary, Pattern } from "@/lib/interfaces";
+import { useLang } from "@/context/LangContext";
 
 export default function PatternListItem({ pattern }: { pattern: Pattern }) {
+  const { dict } = useLang();
+  const dictPatternItem = dict.patternItem as NestedDictionary;
+
   const DEFAULT_IMAGE =
     "https://res.cloudinary.com/doojrsxjl/image/upload/v1779574348/copy_of_gemini_generated_image_nlg962nlg962nlg9_uqtcyx.png";
 
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-xs border border-gray-100 group">
       <Link href={`/patterns/${pattern.slug}`}>
-        <div className="h-64 w-full overflow-hidden relative">
+        <div className="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
           <Image
             src={pattern.imageUrl || DEFAULT_IMAGE}
             alt={pattern.name}
             fill
-            priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-w-7xl) 33vw, (max-w-md) 100vw"
+            className="object-cover group-hover:scale-102 transition-transform duration-300 ease-out"
           />
+          {/* Overlaid Badges Row */}
+          <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+            <span className="px-2 py-1 bg-white/90 backdrop-blur-sm border border-slate-200/40 text-slate-800 text-[10px] font-bold tracking-wide rounded-lg shadow-sm">
+              {pattern.level}
+            </span>
+
+            {/* Conditional Pricing Badge flag */}
+            {pattern.isFree ? (
+              <span className="px-2 py-1 bg-emerald-600 text-white text-[10px] font-bold tracking-wide rounded-lg shadow-sm">
+                {dictPatternItem.badgeFree}
+              </span>
+            ) : (
+              <span className="px-2 py-1 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-medium tracking-wide rounded-lg shadow-sm">
+                {dictPatternItem.badgePaid}
+              </span>
+            )}
+          </div>
         </div>
       </Link>
       <div className="p-5 space-y-2">
@@ -41,7 +61,16 @@ export default function PatternListItem({ pattern }: { pattern: Pattern }) {
           {pattern.description}
         </p>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3">
+          <span className="font-medium text-slate-600">
+            {pattern.mainYarnBrand} {pattern.mainYarnLineName}
+          </span>
+          <span className="font-bold text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
+            {pattern.mainHookSize}mm
+          </span>
+        </div>
+
+        {/* <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between pb-2 px-1">
             {pattern.isFree && (
               <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
@@ -55,7 +84,7 @@ export default function PatternListItem({ pattern }: { pattern: Pattern }) {
               View Details
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

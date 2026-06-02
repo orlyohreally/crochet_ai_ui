@@ -10,6 +10,10 @@
     "emptyTitle": "No patterns found",
     "itemsPerPage": "Items per page"
   },
+  "patternItem": {
+    "badgeFree": "Free",
+    "badgePaid": "Premium"
+  },
   "notFound": {
     "back": "Back to home page",
     "pageDoesNotExistErrorMessage": "It looks like this page does not exist yet. The page may have moved, or the link might be broken.",
@@ -53,5 +57,39 @@
     "storyText": "knitka.ai was born out of a passion for needlework and a desire to make crafting more accessible. We are building an intelligent portal that uses generative AI to help crafters search, organize, and even generate smart crochet and knitting patterns effortlessly.",
     "missionTitle": "The Mission",
     "missionText": "To empower makers worldwide by bridging the gap between centuries-old textile traditions and state-of-the-art technology, keeping the joy of handmade creation alive in a digital world."
+  },
+  "home": {
+    "badge": "AI-Powered Crafting",
+    "heroTitle": "The intelligent engine for handcrafted design.",
+    "heroSubtitle": "Translate complex stitch mathematics, adjust yarn gauges dynamically, and generate custom crochet or knitting guides instantly with generative AI.",
+    "ctaCreate": "Create a Pattern",
+    "ctaBrowse": "Browse Catalog",
+
+    "featuresTitle": "Engine Capabilities",
+    "feat1Title": "Dynamic Gauge Scaling",
+    "feat1Desc": "Input your exact yarn thickness and density. Our engine automatically recalculates all stitch and row counts to match your materials perfectly.",
+    "feat2Title": "Semantic Pattern Search",
+    "feat2Desc": "Find exactly what you want using natural language. Search for 'beginner-friendly cotton bolero' or 'cozy wool socks for a 4mm needle'.",
+    "feat3Title": "Interactive Row Tracking",
+    "feat3Desc": "Your patterns aren't static text files anymore. Track your live progress and check off rows right on your screen as you stitch.",
+
+    "catalogTitle": "Featured Patterns",
+    "catalogSubtitle": "Explore recently generated, adaptive masterclasses.",
+    "viewAll": "View All Patterns",
+    "difficultyEasy": "Easy",
+    "difficultyMedium": "Medium",
+
+    "footerCtaTitle": "Ready to start your next project?",
+    "footerCtaDesc": "Join knitka.ai today and experience the future of digital crafting.",
+    "footerCtaBtn": "Get Started Free",
+    "home": {
+      "badgeFree": "Free",
+      "premiumText": "Premium",
+      "labels": {
+        "amigurumi": "Amigurumi",
+        "garment": "Garment",
+        "accessories": "Accessories"
+      }
+    }
   }
 }
