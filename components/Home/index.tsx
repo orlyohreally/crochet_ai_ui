@@ -12,12 +12,12 @@ import HomeHero from "./HomeHero";
 export default function Home({
   featuredPatterns,
 }: {
-  featuredPatterns: Promise<CondensedPattern[]>;
+  featuredPatterns: Promise<{results: CondensedPattern[]}>;
 }) {
   const dictHome: { [key: string]: string } = useLang().dict.home as {
     [key: string]: string;
   };
-  const patterns = use(featuredPatterns);
+  const patterns = use(featuredPatterns).results;
 
   return (
     <div className="w-full space-y-24 py-12 md:py-20">
