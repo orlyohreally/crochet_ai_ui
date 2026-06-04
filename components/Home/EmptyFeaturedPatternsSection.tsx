@@ -36,6 +36,7 @@ export default function EmptyFeaturedPatternsSection({
           src="/ai_generated_bunny.png"
           alt={dict.emptyImageAlt}
           fill
+          loading="eager"
           className="object-cover object-center grayscale-15 contrast-105"
           sizes="(max-w-4xl) 40vw, 100vw"
         />
