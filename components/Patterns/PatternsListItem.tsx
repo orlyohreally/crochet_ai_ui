@@ -3,20 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { NestedDictionary, Pattern } from "@/lib/interfaces";
-import { useLang } from "@/context/LangContext";
+import { CondensedPattern } from "@/lib/interfaces";
 
-export default function PatternListItem({ pattern }: { pattern: Pattern }) {
-  const { dict } = useLang();
-  const dictPatternItem = dict.patternItem as NestedDictionary;
-
+export default function PatternListItem({
+  dict,
+  pattern,
+}: {
+  dict: { [key: string]: string };
+  pattern: CondensedPattern;
+}) {
   const DEFAULT_IMAGE =
     "https://res.cloudinary.com/doojrsxjl/image/upload/v1779574348/copy_of_gemini_generated_image_nlg962nlg962nlg9_uqtcyx.png";
 
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-xs border border-gray-100 group">
       <Link href={`/patterns/${pattern.slug}`}>
-        <div className="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
+        <div className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden">
           <Image
             src={pattern.imageUrl || DEFAULT_IMAGE}
             alt={pattern.name}
@@ -33,11 +35,11 @@ export default function PatternListItem({ pattern }: { pattern: Pattern }) {
             {/* Conditional Pricing Badge flag */}
             {pattern.isFree ? (
               <span className="px-2 py-1 bg-emerald-600 text-white text-[10px] font-bold tracking-wide rounded-lg shadow-sm">
-                {dictPatternItem.badgeFree}
+                {dict.badgeFree}
               </span>
             ) : (
               <span className="px-2 py-1 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-medium tracking-wide rounded-lg shadow-sm">
-                {dictPatternItem.badgePaid}
+                {dict.badgePaid}
               </span>
             )}
           </div>
@@ -61,11 +63,17 @@ export default function PatternListItem({ pattern }: { pattern: Pattern }) {
           {pattern.description}
         </p>
 
-        <div className="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3">
+        <div
+          className="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3"
+          title={dict.mainMaterialsTitle}
+        >
           <span className="font-medium text-slate-600">
             {pattern.mainYarnBrand} {pattern.mainYarnLineName}
           </span>
-          <span className="font-bold text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
+          <span
+            className="font-bold text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-100"
+            title={dict.mainHookSizeTitle}
+          >
             {pattern.mainHookSize}mm
           </span>
         </div>

@@ -12,7 +12,9 @@
   },
   "patternItem": {
     "badgeFree": "Free",
-    "badgePaid": "Premium"
+    "badgePaid": "Premium",
+    "mainMaterialsTitle": "Main Yarn",
+    "mainHookSizeTitle": "Main Hook Size"
   },
   "notFound": {
     "back": "Back to home page",
@@ -61,35 +63,26 @@
   "home": {
     "badge": "AI-Powered Crafting",
     "heroTitle": "The intelligent engine for handcrafted design.",
-    "heroSubtitle": "Translate complex stitch mathematics, adjust yarn gauges dynamically, and generate custom crochet or knitting guides instantly with generative AI.",
-    "ctaCreate": "Create a Pattern",
-    "ctaBrowse": "Browse Catalog",
+    "heroSubtitle": "Find patterns fluidly by name, yarn type, or style, and effortlessly track custom versions or gauge adaptations of the exact same design profile.",
+    "ctaBrowse": "Explore Catalog",
 
     "featuresTitle": "Engine Capabilities",
-    "feat1Title": "Dynamic Gauge Scaling",
-    "feat1Desc": "Input your exact yarn thickness and density. Our engine automatically recalculates all stitch and row counts to match your materials perfectly.",
-    "feat2Title": "Semantic Pattern Search",
-    "feat2Desc": "Find exactly what you want using natural language. Search for 'beginner-friendly cotton bolero' or 'cozy wool socks for a 4mm needle'.",
-    "feat3Title": "Interactive Row Tracking",
-    "feat3Desc": "Your patterns aren't static text files anymore. Track your live progress and check off rows right on your screen as you stitch.",
+    "feat1Title": "Multi-Dimensional Search",
+    "feat1Desc": "Find patterns exactly how you think. Search fluidly across our index by pattern name, design style, or custom tags like 'Amigurumi' and 'Garments'.",
+    "feat2Title": "Yarn & Gauge Matching",
+    "feat2Desc": "Filter and match patterns directly by your available materials. Discover designs tailored to your specific yarn type, hook size, or row gauge.",
+    "feat3Title": "Pattern Version Control",
+    "feat3Desc": "Track modifications easily. Check, compare, and switch between different versions or sizing adaptations of the exact same pattern profile.",
 
     "catalogTitle": "Featured Patterns",
-    "catalogSubtitle": "Explore recently generated, adaptive masterclasses.",
+    "catalogSubtitle": "Explore recently generated patterns.",
     "viewAll": "View All Patterns",
     "difficultyEasy": "Easy",
     "difficultyMedium": "Medium",
 
-    "footerCtaTitle": "Ready to start your next project?",
-    "footerCtaDesc": "Join knitka.ai today and experience the future of digital crafting.",
-    "footerCtaBtn": "Get Started Free",
-    "home": {
-      "badgeFree": "Free",
-      "premiumText": "Premium",
-      "labels": {
-        "amigurumi": "Amigurumi",
-        "garment": "Garment",
-        "accessories": "Accessories"
-      }
-    }
+    "footerCtaTitle": "Want your pattern to appear here?",
+    "footerCtaDesc": "Contact me directly on Telegram or VK with the design details, name, or yarn type, and I will add it to the platform.",
+    "btnTelegram": "Telegram",
+    "btnVK": "VK"
   }
 }
