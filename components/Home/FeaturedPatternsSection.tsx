@@ -6,6 +6,7 @@ import { CondensedPattern } from "@/lib/interfaces";
 
 import PatternListItem from "@/components/Patterns/PatternsListItem";
 import LoadingHomeSection from "./loading";
+import EmptyFeaturedPatternsSection from "./EmptyFeaturedPatternsSection";
 
 export default function FeaturedPatterns({
   dict,
@@ -14,6 +15,8 @@ export default function FeaturedPatterns({
   dict: { [key: string]: string };
   patterns: CondensedPattern[];
 }) {
+  const hasPatterns = patterns && patterns.length > 0;
+
   return (
     <Suspense fallback={<LoadingHomeSection />}>
       <section className="max-w-6xl mx-auto px-6 space-y-10">
@@ -33,12 +36,19 @@ export default function FeaturedPatterns({
             {dict.viewAll} &rarr;
           </Link>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {patterns.map((pattern) => (
-            <PatternListItem dict={dict} pattern={pattern} key={pattern.slug} />
-          ))}
-        </div>
+        {hasPatterns ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {patterns.map((pattern) => (
+              <PatternListItem
+                dict={dict}
+                pattern={pattern}
+                key={pattern.slug}
+              />
+            ))}
+          </div>
+        ) : (
+          <EmptyFeaturedPatternsSection dict={dict} />
+        )}
       </section>
     </Suspense>
   );

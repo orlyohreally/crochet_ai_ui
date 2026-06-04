@@ -6,7 +6,7 @@ export default function ConversionBanner({
   dict: { [key: string]: string };
 }) {
   return (
-    <section className="max-w-5xl mx-auto px-6">
+    <section className="max-w-5xl mx-auto px-6" id="conversion_banner">
       <div className="bg-slate-900 rounded-3xl p-8 md:p-10 text-center space-y-6 shadow-sm">
         <div className="max-w-xl mx-auto space-y-2">
           <h3 className="text-xl md:text-2xl font-black text-white tracking-tight">

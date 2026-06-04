@@ -5,7 +5,7 @@ import { useLang } from "@/context/LangContext";
 import { CondensedPattern } from "@/lib/interfaces";
 
 import ConversionBanner from "./ConversionBanner";
-import FeaturedPatterns from "./FeaturedPatterns";
+import FeaturedPatternsSection from "./FeaturedPatternsSection";
 import FeaturesGrid from "./FeaturesGrid";
 import HomeHero from "./HomeHero";
 
@@ -25,7 +25,7 @@ export default function Home({
 
       <FeaturesGrid dict={dictHome} />
 
-      <FeaturedPatterns dict={dictHome} patterns={patterns} />
+      <FeaturedPatternsSection dict={dictHome} patterns={patterns} />
 
       <ConversionBanner dict={dictHome} />
     </div>
