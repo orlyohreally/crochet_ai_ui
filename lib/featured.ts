@@ -1,7 +1,7 @@
 import { CondensedPattern } from "./interfaces";
 import { clientFetch } from "./proxy";
 
-export async function featuredPatterns(): Promise<CondensedPattern[]> {
+export async function featuredPatterns(): Promise<{results: CondensedPattern[]}> {
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     if (!apiBaseUrl) {
