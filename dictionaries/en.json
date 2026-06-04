@@ -10,6 +10,12 @@
     "emptyTitle": "No patterns found",
     "itemsPerPage": "Items per page"
   },
+  "patternItem": {
+    "badgeFree": "Free",
+    "badgePaid": "Premium",
+    "mainMaterialsTitle": "Main Yarn",
+    "mainHookSizeTitle": "Main Hook Size"
+  },
   "notFound": {
     "back": "Back to home page",
     "pageDoesNotExistErrorMessage": "It looks like this page does not exist yet. The page may have moved, or the link might be broken.",
@@ -53,5 +59,35 @@
     "storyText": "knitka.ai was born out of a passion for needlework and a desire to make crafting more accessible. We are building an intelligent portal that uses generative AI to help crafters search, organize, and even generate smart crochet and knitting patterns effortlessly.",
     "missionTitle": "The Mission",
     "missionText": "To empower makers worldwide by bridging the gap between centuries-old textile traditions and state-of-the-art technology, keeping the joy of handmade creation alive in a digital world."
+  },
+  "home": {
+    "badge": "Crochet with help from AI",
+    "heroTitle": "The intelligent engine for handcrafted design.",
+    "heroSubtitle": "Find patterns fluidly by name, yarn type, or style, and effortlessly track custom versions or gauge adaptations of the exact same design profile.",
+    "ctaBrowse": "Explore Catalog",
+
+    "featuresTitle": "Engine Capabilities",
+    "feat1Title": "Multi-Dimensional Search",
+    "feat1Desc": "Find patterns exactly how you think. Search fluidly across our index by pattern name, design style, or custom tags like 'Amigurumi' and 'Garments'.",
+    "feat2Title": "Yarn & Gauge Matching",
+    "feat2Desc": "Filter and match patterns directly by your available materials. Discover designs tailored to your specific yarn type, hook size, or row gauge.",
+    "feat3Title": "Pattern Version Control",
+    "feat3Desc": "Track modifications easily. Check, compare, and switch between different versions or sizing adaptations of the exact same pattern profile.",
+
+    "catalogTitle": "Featured Patterns",
+    "catalogSubtitle": "Explore recently generated patterns.",
+    "viewAll": "View All Patterns",
+    "difficultyEasy": "Easy",
+    "difficultyMedium": "Medium",
+    "emptyTitle": "Your actual pattern could be here instead of an AI-generated one!",
+    "emptyDesc": "Our catalog is expanding quickly. If you are an amigurumi designer or knitting creator, send your pattern profile to feature it on our homepage.",
+    "emptyCta": "Submit a Pattern",
+    "emptyImageAlt": "AI-generated bunny amigurumi pattern preview",
+    "emptyBadge": "Pattern Wanted",
+
+    "footerCtaTitle": "Want your pattern to appear here?",
+    "footerCtaDesc": "Contact me directly on Telegram or VK with the design details, name, or yarn type, and I will add it to the platform.",
+    "btnTelegram": "Telegram",
+    "btnVK": "VK"
   }
 }

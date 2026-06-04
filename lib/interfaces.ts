@@ -20,6 +20,24 @@ export interface Pattern {
   category: Category;
   labels: Label[];
   isFree: boolean;
+  level: string | null;
+  mainHookSize: string | null;
+  mainYarnBrand: string | null;
+  mainYarnLineName: string | null;
+}
+
+export interface CondensedPattern {
+  slug: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  category: Category;
+  labels: Label[];
+  isFree: boolean;
+  level: string | null;
+  mainHookSize: string | null;
+  mainYarnBrand: string | null;
+  mainYarnLineName: string | null;
 }
 
 
