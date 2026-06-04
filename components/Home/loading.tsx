@@ -1,8 +1,11 @@
-export default function LoadingPatternsList() {
-  const skeletonCards = Array.from({ length: 9 });
+"use client";
+import React from "react";
+
+export default function LoadingHomeSection() {
+  const skeletonCards = Array.from({ length: 3 });
 
   return (
-    <section className="p-8 space-y-6">
+    <section className="max-w-6xl mx-auto px-6 space-y-10">
       {/* Skeleton Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200/80 pb-4 animate-pulse">
         <div className="space-y-2">
@@ -16,7 +19,7 @@ export default function LoadingPatternsList() {
       </div>
 
       {/* Skeleton Cards Grid */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {skeletonCards.map((_, idx) => (
           <div 
             key={idx} 
@@ -37,7 +40,7 @@ export default function LoadingPatternsList() {
             </div>
 
             {/* Bottom Meta Content Block Placeholders */}
-            <div className="p-5 flex flex-col justify-between flex-grow space-y-4">
+            <div className="p-5 flex flex-col justify-between grow space-y-4">
               <div className="space-y-2.5">
                 {/* Type upper category text placeholder */}
                 <div className="h-3 w-16 bg-slate-200 rounded-md" />

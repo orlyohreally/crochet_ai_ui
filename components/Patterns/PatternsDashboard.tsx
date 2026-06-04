@@ -1,6 +1,8 @@
 import { PatternDashboardData } from "@/lib/interfaces";
 
 import Dashboard from "@/components/Dashboard";
+import DashboardHeader from "./PatternsHeader";
+import EmptyPatternsList from "./EmptyPatternsList";
 import PatternList from "./PatternsList";
 
 export default function PatternsDashboard({
@@ -12,17 +14,18 @@ export default function PatternsDashboard({
   pageSize: number;
   patternsDashboardData: PatternDashboardData;
 }) {
-
   return (
     <Dashboard
       page={page}
       pageSize={pageSize}
       totalItems={patternsDashboardData.count}
-      totalItemsSlot={
-        <>All Patterns{" "}</>
-      }
+      totalItemsSlot={<DashboardHeader />}
     >
-      <PatternList patterns={patternsDashboardData.results} />
+      {patternsDashboardData.results.length === 0 ? (
+        <EmptyPatternsList />
+      ) : (
+        <PatternList patterns={patternsDashboardData.results} />
+      )}
     </Dashboard>
   );
 }

@@ -1,3 +1,7 @@
+export type NestedDictionary = {
+  [key: string]: string | NestedDictionary;
+};
+
 export interface Label {
   name: string;
   slug: string;
@@ -19,7 +23,8 @@ export interface Author {
   slug: string;
 }
 
-export interface Pattern {
+
+export interface CondensedPattern {
   slug: string;
   name: string;
   description: string;
@@ -27,12 +32,19 @@ export interface Pattern {
   category: Category;
   labels: Label[];
   isFree: boolean;
+  level: string | null;
+  mainHookSize: string | null;
+  mainYarnBrand: string | null;
+  mainYarnLineName: string | null;
+}
+
+export interface Pattern extends CondensedPattern {
   purchaseSources: PurchaseSources[];
   createdAt: string;
   updatedAt: string;
   author: Author;
+  level: string | null;
 }
-
 
 export interface PatternDashboardData {
   next: string | null;
