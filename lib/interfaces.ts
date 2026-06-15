@@ -110,7 +110,14 @@ export interface PatternHook {
   comment: string;
 }
 
-export interface Pattern extends CondensedPattern {
+export interface Pattern {
+  slug: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  category?: Category;
+  labels: Label[];
+  isFree: boolean;
   purchaseSources: PurchaseSources[];
   createdAt: string;
   updatedAt: string;
