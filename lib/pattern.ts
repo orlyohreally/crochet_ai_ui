@@ -1,4 +1,7 @@
+import { clientFetch } from "./proxy";
+
 import { Pattern } from "./interfaces";
+
 
 export async function pattern(slug: string): Promise<Pattern> {
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -7,7 +10,7 @@ export async function pattern(slug: string): Promise<Pattern> {
         return Promise.reject(new Error("API_BASE_URL_NOT_CONFIGURED"));
     }
 
-    const response = await fetch(`${apiBaseUrl.replace(/\/$/, "")}/pattern-builder/patterns/${slug}`);
+    const response = await clientFetch(`/pattern-builder/patterns/${slug}`);
 
     if (!response.ok) {
         if (response.status === 404) {

@@ -12,9 +12,13 @@ import HomeHero from "./HomeHero";
 export default function Home({
   featuredPatterns,
 }: {
-  featuredPatterns: Promise<{results: CondensedPattern[]}>;
+  featuredPatterns: Promise<{ results: CondensedPattern[] }>;
 }) {
-  const dictHome: { [key: string]: string } = useLang().dict.home as {
+  const dict = useLang().dict;
+  const dictHome: { [key: string]: string } = dict.home as {
+    [key: string]: string;
+  };
+  const dictFeaturedPatterns = dict.featuredPatterns as {
     [key: string]: string;
   };
   const patterns = use(featuredPatterns).results;
@@ -25,7 +29,10 @@ export default function Home({
 
       <FeaturesGrid dict={dictHome} />
 
-      <FeaturedPatternsSection dict={dictHome} patterns={patterns} />
+      <FeaturedPatternsSection
+        dict={dictFeaturedPatterns}
+        patterns={patterns}
+      />
 
       <ConversionBanner dict={dictHome} />
     </div>

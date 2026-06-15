@@ -13,6 +13,8 @@ export default function PatternListItem({
   dict: { [key: string]: string };
   pattern: CondensedPattern;
 }) {
+  const hookSizes = pattern.hookSizes.join(" | ");
+
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-xs border border-gray-100 group">
       <Link href={`/patterns/${pattern.slug}`}>
@@ -44,7 +46,9 @@ export default function PatternListItem({
         </div>
       </Link>
       <div className="p-5 space-y-2">
-        <h3 className="font-bold text-gray-900 text-lg">{pattern.name}</h3>
+        <Link href={`/patterns/${pattern.slug}`} className="block mb-3">
+          <h3 className="font-bold text-gray-900 text-lg">{pattern.name}</h3>
+        </Link>
 
         <div className="flex flex-wrap gap-2">
           {pattern.labels.slice(0, 3).map((label) => (
@@ -68,21 +72,18 @@ export default function PatternListItem({
           <span className="font-medium text-slate-600">
             {pattern.mainYarnBrand} {pattern.mainYarnLineName}
           </span>
-          <span
-            className="font-bold text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-100"
-            title={dict.mainHookSizeTitle}
-          >
-            {pattern.mainHookSize}mm
-          </span>
+          {pattern.hookSizes.length > 0 && (
+            <span
+              className="font-bold text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-100"
+              title={dict.hookSizesTitle}
+            >
+              {hookSizes}
+            </span>
+          )}
         </div>
 
-        {/* <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between pb-2 px-1">
-            {pattern.isFree && (
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                Free Pattern
-              </span>
-            )}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between">
             <Link
               href={`/patterns/${pattern.slug}`}
               className="text-gray-400 font-bold text-xs hover:text-pink-500 transition-colors"
@@ -90,7 +91,7 @@ export default function PatternListItem({
               View Details
             </Link>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
