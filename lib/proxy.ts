@@ -7,9 +7,9 @@ export async function clientFetch(endpoint: string, options: RequestInit = {}) {
   const cookieStore = await cookies();
   const currentLocale = cookieStore.get(I18N_CONFIG.cookieName)?.value || I18N_CONFIG.defaultLocale;
   const headers = new Headers(options.headers);
-  
-  headers.set('Accept-Language', currentLocale); 
-  
+
+  headers.set('Accept-Language', currentLocale);
+
   const requestUrl = `${apiBaseUrl}${endpoint}`;
 
   return fetch(requestUrl, {

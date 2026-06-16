@@ -23,7 +23,7 @@ export default function DashboardTotalItemsPanel({
   }
 
   return (
-    <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
+    <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8 pb-4 border-b border-gray-100">
       <div>
         <h2 className="text-xl font-bold text-gray-900">
           {children}
