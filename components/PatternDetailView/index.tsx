@@ -14,16 +14,15 @@ import PatternAuthor from "@/components/PatternAuthor";
 import PatternImage from "./PatternImage";
 import MaterialsList from "./MaterialsList";
 import RecommendedYarn from "./RecommendedYarn";
+import PatternPurchaseSource from "./PatternPurchaseSources";
 
 export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
   const { dict: useLangDict, lang } = useLang();
   const dict = useLangDict.patternItem as { [key: string]: string };
-  const showMaterialsSection =
-    pattern.variants || pattern.materials || pattern.hooks;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-      <div className="lg:col-span-5">
+      <div className="lg:col-span-5 col-span-12">
         <PatternImage
           imageUrl={pattern.imageUrl || DEFAULT_PATTERN_IMAGE}
           imageAlt={pattern.name}
@@ -33,7 +32,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
           </span>
 
           {pattern.isFree ? (
-            <span className="px-2 py-1 bg-emerald-600 text-white text-[10px] font-bold tracking-wide rounded-lg shadow-sm">
+            <span className="px-2 py-1 bg-emerald-500 text-white text-[10px] font-bold tracking-wide rounded-lg shadow-sm">
               {dict.badgeFree}
             </span>
           ) : (
@@ -44,7 +43,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
         </PatternImage>
       </div>
 
-      <div className="lg:col-span-7 flex flex-col justify-between min-h-112.5">
+      <div className="lg:col-span-7 col-span-12 flex flex-col justify-between min-h-112.5">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-3">
           {pattern.category && (
             <>
@@ -82,6 +81,14 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
 
         <hr className="border-slate-100 my-6" />
 
+        <section id="purchase_source" className="mb-6 col-span-12">
+          <PatternPurchaseSource
+            sources={pattern.purchaseSources}
+            dict={dict}
+            isFree={pattern.isFree}
+          />
+        </section>
+
         {pattern.description && (
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 max-w-3xl mb-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-100 pb-4 mb-6 gap-4">
@@ -97,21 +104,25 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
             </p>
           </div>
         )}
-
-        {showMaterialsSection && (
-          <section id="materials" className="space-y-4">
-            {pattern.variants && pattern.variants.length > 0 && (
-              <RecommendedYarn dict={dict} variants={pattern.variants} />
-            )}
-
-            <MaterialsList
-              dict={dict}
-              materials={pattern.materials}
-              hooks={pattern.hooks}
-            />
-          </section>
-        )}
       </div>
+
+      {pattern.variants && (
+        <section id="yarn" className="space-y-4 col-span-12 lg:col-span-6">
+          {pattern.variants && pattern.variants.length > 0 && (
+            <RecommendedYarn dict={dict} variants={pattern.variants} />
+          )}
+        </section>
+      )}
+
+      {(pattern.materials || pattern.hooks) && (
+        <section id="materials" className="space-y-4 col-span-12 lg:col-span-6">
+          <MaterialsList
+            dict={dict}
+            materials={pattern.materials}
+            hooks={pattern.hooks}
+          />
+        </section>
+      )}
     </div>
   );
 }
