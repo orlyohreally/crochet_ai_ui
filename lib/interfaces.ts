@@ -12,8 +12,8 @@ export interface Category {
   slug: string;
 }
 
-export interface PurchaseSources {
-  marketplace: string;
+export interface PurchaseSource {
+  marketplace: "VKONTAKTE" | "BOOSTY" | "WHATSAPP" | "TELEGRAM" | "ETSY" | "RAVELRY" | "LOVECRAFTS" | "SITE";
   url: string;
 }
 
@@ -118,7 +118,7 @@ export interface Pattern {
   category?: Category;
   labels: Label[];
   isFree: boolean;
-  purchaseSources: PurchaseSources[];
+  purchaseSources: PurchaseSource[];
   createdAt: string;
   updatedAt: string;
   author: Author;
