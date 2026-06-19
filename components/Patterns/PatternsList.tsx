@@ -1,11 +1,11 @@
 "use client";
 
 import { useLang } from "@/context/LangContext";
-import { Pattern } from "@/lib/interfaces";
+import { CondensedPattern } from "@/lib/interfaces";
 
 import PatternListItem from "./PatternsListItem";
 
-export default function PatternsList({ patterns }: { patterns: Pattern[] }) {
+export default function PatternsList({ patterns }: { patterns: CondensedPattern[] }) {
   const { dict } = useLang();
   const dictPatternItem = dict.patternItem as { [key: string]: string };
 
