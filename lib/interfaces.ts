@@ -133,5 +133,5 @@ export interface PatternDashboardData {
   previous: string | null;
   count: number;
   totalPages: number;
-  results: Pattern[];
+  results: CondensedPattern[];
 }
