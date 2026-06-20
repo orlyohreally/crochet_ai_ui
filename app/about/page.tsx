@@ -24,9 +24,6 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
         {/* Story Block */}
         <div className="bg-white border border-slate-200/60 rounded-2xl p-6 md:p-8 shadow-sm space-y-3">
-          <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
-            ✨
-          </div>
           <h2 className="text-xl font-bold text-slate-800">
             {dictAbout.storyTitle as string}
           </h2>
@@ -37,9 +34,6 @@ export default function AboutPage() {
 
         {/* Mission Block */}
         <div className="bg-white border border-slate-200/60 rounded-2xl p-6 md:p-8 shadow-sm space-y-3">
-          <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
-            🧶
-          </div>
           <h2 className="text-xl font-bold text-slate-800">
             {dictAbout.missionTitle as string}
           </h2>
