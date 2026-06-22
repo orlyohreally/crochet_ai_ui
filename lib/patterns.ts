@@ -1,7 +1,8 @@
+import { Locale } from "@/i18n.config";
 import { PatternDashboardData } from "./interfaces";
 import { clientFetch } from "./proxy";
 
-export async function patterns({ page, pageSize }: { page: number; pageSize: number }): Promise<PatternDashboardData> {
+export async function patterns({ page, pageSize, lang }: { page: number; pageSize: number, lang: Locale }): Promise<PatternDashboardData> {
     const urlParams = new URLSearchParams({
         page: page.toString(),
         page_size: pageSize.toString()
@@ -12,7 +13,7 @@ export async function patterns({ page, pageSize }: { page: number; pageSize: num
         return Promise.reject(new Error("API_BASE_URL_NOT_CONFIGURED"));
     }
 
-    const response = await clientFetch(`/pattern-builder/patterns/?${urlParams.toString()}`);
+    const response = await clientFetch({endpoint: `/pattern-builder/patterns/?${urlParams.toString()}`, lang});
 
     if (!response.ok) {
         if (response.status === 404) {

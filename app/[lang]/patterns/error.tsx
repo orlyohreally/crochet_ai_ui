@@ -1,9 +1,12 @@
 'use client'
  
-import { useLang } from '@/context/LangContext';
-import { NestedDictionary } from '@/lib/interfaces';
 import { InformationCircleIcon } from '@heroicons/react/24/solid'
-import Link from 'next/link';
+
+import { NestedDictionary } from '@/lib/interfaces';
+
+import { useLang } from '@/context/LangContext';
+
+import Link from "@/components/Link";
 
 export default function Error({
   error,

@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
@@ -15,31 +15,24 @@ function getBrowserLocale(request: NextRequest): string {
 }
 
 export function proxy(request: NextRequest) {
-  const hasLocaleCookie = request.cookies.has(I18N_CONFIG.cookieName);
+  const { pathname } = request.nextUrl;
+  
+  // Check if the path already contains a supported locale
+  const pathnameHasLocale = I18N_CONFIG.locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
 
-  if (!hasLocaleCookie) {
-    const detectedLocale = getBrowserLocale(request);
-    request.cookies.set(I18N_CONFIG.cookieName, detectedLocale);
+  if (pathnameHasLocale) return;
+  const detectedLocale = getBrowserLocale(request);
 
-    // Clone the request headers into the next response step context
-    const response = NextResponse.next({
-      request: {
-        headers: new Headers(request.headers),
-      },
-    });
-
-    response.cookies.set(I18N_CONFIG.cookieName, detectedLocale, {
-      path: "/",
-      maxAge: I18N_CONFIG.cookieMaxAge,
-      sameSite: I18N_CONFIG.cookieSameSite,
-    });
-
-    return response;
-  }
-
-  return NextResponse.next();
+  // Otherwise, redirect to default locale (or analyze Accept-Language headers here)
+  request.nextUrl.pathname = `/${detectedLocale}${pathname}`;
+  return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+  matcher: [
+    // Skip all internal paths (_next, static files, images)
+    '/((?!_next|assets|favicon.ico|.*\\..*).*)',
+  ],
 };

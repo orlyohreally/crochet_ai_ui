@@ -1,6 +1,6 @@
-import Link from "next/link";
-
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+
+import Link from "@/components/Link";
 
 export default function PreviousPageLink({
   href,

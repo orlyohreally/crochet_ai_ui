@@ -5,10 +5,10 @@ import React, {
   useState,
   useTransition,
 } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import { I18N_CONFIG, Locale } from "@/i18n.config";
 import { NestedDictionary } from "@/lib/interfaces";
-import { setLanguageCookie } from "@/app/actions";
 
 interface LangContextType {
   dict: NestedDictionary;
@@ -33,14 +33,24 @@ export function LangProvider({
   const [lang, setLangState] = useState<Locale>(initialLang);
   const [isPending, startTransition] = useTransition();
 
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams()
+  console.log("pathname", pathname)
+
   const setLang = (newLang: Locale) => {
     if (newLang === lang) return;
 
-    startTransition(async () => {
-      setLangState(newLang);
-      await setLanguageCookie(newLang);
+    const segments = pathname.split("/");
+    segments[1] = newLang;
+    const newPathname = segments.join("/");
+    
+    const queryString = searchParams.toString();
+    const redirectURL = queryString ? `${newPathname}?${queryString}` : newPathname;
 
-      window.location.reload();
+    startTransition(() => {
+      setLangState(newLang);
+      router.push(redirectURL);
     });
   };
 

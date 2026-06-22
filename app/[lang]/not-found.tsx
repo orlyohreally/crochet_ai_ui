@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { NestedDictionary } from "@/lib/interfaces";
 
 import { useLang } from "@/context/LangContext";
-import { NestedDictionary } from "@/lib/interfaces";
+
+import Link from "@/components/Link";
 
 export default function NotFound() {
   const { dict } = useLang();
