@@ -10,9 +10,9 @@ export default function MaterialItem({
   additionalChildren?: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200">
+    <div className="flex flex-col sm:flex-row justify-between p-3 bg-white rounded-lg border border-gray-200 gap-2">
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex gap-2">
           <span className="font-medium text-gray-800 text-sm block">
             {children}
           </span>
@@ -27,7 +27,7 @@ export default function MaterialItem({
         )}
       </div>
       {additionalChildren && (
-        <div className="text-right">
+        <div className="lg:text-right">
           <span className="text-sm font-bold text-gray-900 block">
             {additionalChildren}
           </span>

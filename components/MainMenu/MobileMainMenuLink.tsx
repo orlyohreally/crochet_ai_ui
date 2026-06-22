@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "../Link";
+import Link from "@/components/Link";
 
 
 export default function MobileMainMenuLink(props: { href: string; children: React.ReactNode }) {

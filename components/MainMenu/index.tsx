@@ -8,7 +8,7 @@ import { useLang } from "@/context/LangContext";
 import MainMenuLink from "./MainMenuLink";
 import MobileMainMenuLink from "./MobileMainMenuLink";
 import { NestedDictionary } from "@/lib/interfaces";
-import Link from "../Link";
+import Link from "@/components/Link";
 
 export default function MainMenu({ children }: { children: React.ReactNode }) {
   const { dict } = useLang();
@@ -24,7 +24,7 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
         <div className="flex justify-between h-16 items-center">
           <Link
             href={`/`}
-            className="flex items-center gap-2 cursor-pointer"
+            className="flex items-center gap-2 cursor-pointer shrink-0"
           >
             <div className="w-8 h-8 rounded-lg rotate-12" />
             <span className="uppercase font-black text-xl tracking-tighter text-gray-900 italic">
@@ -49,7 +49,7 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
             </MainMenuLink>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <div className="order-1 md:order-0">{children}</div>
             <div className="md:hidden order-2">
               <button
