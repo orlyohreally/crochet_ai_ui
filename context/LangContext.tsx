@@ -5,7 +5,7 @@ import React, {
   useState,
   useTransition,
 } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import { I18N_CONFIG, Locale } from "@/i18n.config";
 import { NestedDictionary } from "@/lib/interfaces";
@@ -35,19 +35,22 @@ export function LangProvider({
 
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams()
+  console.log("pathname", pathname)
 
   const setLang = (newLang: Locale) => {
     if (newLang === lang) return;
 
-    // 1. Calculate the new URL path by replacing the locale prefix
     const segments = pathname.split("/");
-    segments[1] = newLang; // Replaces 'en' with 'ru' or vice-versa
+    segments[1] = newLang;
     const newPathname = segments.join("/");
+    
+    const queryString = searchParams.toString();
+    const redirectURL = queryString ? `${newPathname}?${queryString}` : newPathname;
 
-    // 2. Wrap state update and routing in a transition to keep UI responsive
     startTransition(() => {
       setLangState(newLang);
-      router.push(newPathname);
+      router.push(redirectURL);
     });
   };
 
