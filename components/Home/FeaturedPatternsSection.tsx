@@ -1,9 +1,8 @@
 import { Suspense } from "react";
 
-import Link from "next/link";
-
 import { CondensedPattern } from "@/lib/interfaces";
 
+import Link from "@/components/Link";
 import PatternListItem from "@/components/Patterns/PatternsListItem";
 import LoadingHomeSection from "./loading";
 import EmptyFeaturedPatternsSection from "./EmptyFeaturedPatternsSection";

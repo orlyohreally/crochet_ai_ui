@@ -1,9 +1,12 @@
 "use client";
-import Link from "next/link";
+
+import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
+
+import { NestedDictionary } from "@/lib/interfaces";
 
 import { useLang } from "@/context/LangContext";
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
-import { NestedDictionary } from "@/lib/interfaces";
+
+import Link from "@/components/Link";
 
 export default function PrivacyPage() {
   const { dict } = useLang();
@@ -34,15 +37,6 @@ export default function PrivacyPage() {
 
         <div className="space-y-4 pt-4">
           <section className="space-y-2">
-            <h2 className="text-base font-bold text-slate-800">
-              {dictLegal.cookiesSecTitle as string}
-            </h2>
-            <p className="text-sm text-slate-500 leading-relaxed">
-              {dictLegal.cookiesSecText as string}
-            </p>
-          </section>
-
-          <section className="space-y-2 pt-2">
             <h2 className="text-base font-bold text-slate-800">
               {dictLegal.dataSecTitle as string}
             </h2>

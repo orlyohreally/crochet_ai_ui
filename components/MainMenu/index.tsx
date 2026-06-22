@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useLang } from "@/context/LangContext";
+import { usePathname } from "next/navigation";
 
-import Link from "next/link";
+import { useLang } from "@/context/LangContext";
 
 import MainMenuLink from "./MainMenuLink";
 import MobileMainMenuLink from "./MobileMainMenuLink";
 import { NestedDictionary } from "@/lib/interfaces";
+import Link from "../Link";
 
 export default function MainMenu({ children }: { children: React.ReactNode }) {
   const { dict } = useLang();
@@ -15,11 +16,16 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const pathname = usePathname();
+
   return (
     <nav className="bg-white shadow-xs sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <Link href="/" className="flex items-center gap-2 cursor-pointer">
+          <Link
+            href={`/`}
+            className="flex items-center gap-2 cursor-pointer"
+          >
             <div className="w-8 h-8 rounded-lg rotate-12" />
             <span className="uppercase font-black text-xl tracking-tighter text-gray-900 italic">
               Knitka.ai
@@ -27,12 +33,18 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <MainMenuLink href={`/patterns`}>
+            <MainMenuLink
+              href={`/patterns`}
+              isActive={pathname == "/patterns"}
+            >
               <span className="hidden sm:inline">
                 {dictMainMenu.patterns as string}
               </span>
             </MainMenuLink>
-            <MainMenuLink href={`/about`}>
+            <MainMenuLink
+              href={`/about`}
+              isActive={pathname == `/about`}
+            >
               {dictMainMenu.about as string}
             </MainMenuLink>
           </div>
@@ -76,10 +88,10 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 animate-in slide-in-from-top-2 duration-200">
           <div className="px-4 pt-2 pb-6 space-y-2">
-            <MobileMainMenuLink href="/patterns">
+            <MobileMainMenuLink href={`/patterns`}>
               {dictMainMenu.patterns as string}
             </MobileMainMenuLink>
-            <MobileMainMenuLink href="/about">
+            <MobileMainMenuLink href={`/about}`}>
               {dictMainMenu.about as string}
             </MobileMainMenuLink>
           </div>

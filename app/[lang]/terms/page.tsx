@@ -1,9 +1,13 @@
 "use client";
-import Link from "next/link";
+
+import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
+
+import { NestedDictionary } from "@/lib/interfaces";
 
 import { useLang } from "@/context/LangContext";
-import { NestedDictionary } from "@/lib/interfaces";
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
+
+
+import Link from "@/components/Link";
 
 export default function TermsPage() {
   const { dict } = useLang();

@@ -5,10 +5,10 @@ import React, {
   useState,
   useTransition,
 } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 import { I18N_CONFIG, Locale } from "@/i18n.config";
 import { NestedDictionary } from "@/lib/interfaces";
-import { setLanguageCookie } from "@/app/actions";
 
 interface LangContextType {
   dict: NestedDictionary;
@@ -33,14 +33,21 @@ export function LangProvider({
   const [lang, setLangState] = useState<Locale>(initialLang);
   const [isPending, startTransition] = useTransition();
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   const setLang = (newLang: Locale) => {
     if (newLang === lang) return;
 
-    startTransition(async () => {
-      setLangState(newLang);
-      await setLanguageCookie(newLang);
+    // 1. Calculate the new URL path by replacing the locale prefix
+    const segments = pathname.split("/");
+    segments[1] = newLang; // Replaces 'en' with 'ru' or vice-versa
+    const newPathname = segments.join("/");
 
-      window.location.reload();
+    // 2. Wrap state update and routing in a transition to keep UI responsive
+    startTransition(() => {
+      setLangState(newLang);
+      router.push(newPathname);
     });
   };
 

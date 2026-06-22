@@ -1,12 +1,11 @@
-import "./globals.css";
+import "../globals.css";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { cookies } from "next/headers";
 
 import { LangProvider } from "@/context/LangContext";
 import { getPlainDictionary } from "@/utils/translations";
-import { I18N_CONFIG, Locale } from "@/i18n.config";
+import { Locale } from "@/i18n.config";
 
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MainMenu from "@/components/MainMenu";
@@ -28,17 +27,13 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
+  params,
   children,
 }: Readonly<{
+  params: Promise<{lang: string}>,
   children: React.ReactNode;
 }>) {
-  // Fetch the dictionary strings
-  const cookieStore = await cookies();
-
-  // Read the cookie value. If it doesn't exist yet, default to default locale
-  const lang =
-    (cookieStore.get(I18N_CONFIG.cookieName)?.value as Locale) ||
-    I18N_CONFIG.defaultLocale;
+  const { lang } = await params as {lang: Locale};
 
   const translationDict = await getPlainDictionary(lang);
 

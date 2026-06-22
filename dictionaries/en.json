@@ -50,7 +50,6 @@
     "tryAgain": "Try again"
   },
   "footer": {
-    "cookieNote": "We use a strictly necessary cookie to remember your language preference.",
     "privacy": "Privacy Policy",
     "rights": "All rights reserved.",
     "terms": "Terms of Service"
@@ -59,30 +58,26 @@
     "aiSecText": "Patterns and search profiles compiled or modified via our AI assistance modules are provided 'as is' for creative guidance. While we aim for absolute clarity, Knitka.ai does not guarantee error-free stitch instructions or yarn matching calculations.",
     "aiSecTitle": "2. AI-Generated Content Liability",
     "backToHome": "Back to Home",
-    "cookiesSecText": "We use a single, strictly necessary functional cookie named 'NEXT_LOCALE' to remember your chosen language preference across sessions. This cookie does not track your browsing history on other websites, contains no personal identifying data, and is essential to deliver a localized interface.",
-    "cookiesSecTitle": "1. Cookies and Local Storage",
-    "dataSecText": "Because Knitka.ai utilizes advanced AI engines to assist your crafting workflow, any user analytics gathered are strictly anonymous and used solely to optimize search relevance, pattern classification speeds, and overall application performance.",
-    "dataSecTitle": "2. Data Collection",
+    "dataSecText": "Because Knitka.ai utilizes advanced AI engines to assist your crafting workflow, any user analytics used solely to optimize search relevance, pattern classification speeds, and overall application performance.",
+    "dataSecTitle": "Data Collection",
     "privacyIntro": "At Knitka.ai, your privacy is exceptionally important to us. This policy details how we handle the minimal data needed to operate our online platform.",
     "privacyTitle": "Privacy Policy",
     "privacyUpdated": "Last updated: May 2026",
     "termsIntro": "Welcome to Knitka.ai. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions.",
     "termsTitle": "Terms of Service",
     "termsUpdated": "Last updated: May 2026",
-    "usageSecText": "Our smart crochet and knitting discovery engine is provided for your personal, non-commercial crafting inspiration. You agree not to scrape, exploit, or disrupt our backend AI infrastructure or database pools.",
+    "usageSecText": "Our smart engine is provided for your personal, non-commercial crafting inspiration. You agree not to scrape, exploit, or disrupt our backend AI infrastructure or database pools.",
     "usageSecTitle": "1. Permitted Use"
   },
   "about": {
     "missionText": "To empower makers worldwide by bridging the gap between centuries-old textile traditions and state-of-the-art technology, keeping the joy of handmade creation alive in a digital world.",
     "missionTitle": "The Mission",
-    "storyText": "Knitka.ai was born out of a passion for needlework and a desire to make crafting more accessible. We are building an intelligent portal that uses generative AI to help crafters search, organize, and even generate smart crochet and knitting patterns effortlessly.",
+    "storyText": "Knitka.ai was born out of a passion for needlework and a desire to make crafting more accessible. We are building an intelligent portal that uses AI functionality to help crafters search and organize crochet patterns effortlessly.",
     "storyTitle": "Our Story",
     "subtitle": "Where traditional crafting meets modern AI innovation.",
     "title": "About Knitka.ai"
   },
   "home": {
-
-
     "badge": "Crochet with help from AI",
     "btnTelegram": "Telegram",
     "btnVK": "VK",

@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { DEFAULT_PATTERN_IMAGE } from "@/lib/constants";
 import { CondensedPattern } from "@/lib/interfaces";
+
+import Link from "@/components/Link";
 
 export default function PatternListItem({
   dict,
