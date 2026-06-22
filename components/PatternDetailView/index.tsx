@@ -22,7 +22,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-      <div className="lg:col-span-5 col-span-12">
+      <div className="lg:col-span-5 col-span-1">
         <PatternImage
           imageUrl={pattern.imageUrl || DEFAULT_PATTERN_IMAGE}
           imageAlt={pattern.name}
@@ -43,7 +43,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
         </PatternImage>
       </div>
 
-      <div className="lg:col-span-7 col-span-12 flex flex-col justify-between min-h-112.5">
+      <div className="lg:col-span-7 col-span-1 flex flex-col justify-between min-h-112.5">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-3">
           {pattern.category && (
             <>
@@ -81,7 +81,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
 
         <hr className="border-slate-100 my-6" />
 
-        <section id="purchase_source" className="mb-6 col-span-12">
+        <section id="purchase_source" className="mb-6 col-span-1">
           <PatternPurchaseSource
             sources={pattern.purchaseSources}
             dict={dict}
@@ -99,7 +99,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
               </div>
             </div>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed whitespace-pre-line">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed whitespace-pre-line text-justify">
               {pattern.description}
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
       </div>
 
       {pattern.variants && (
-        <section id="yarn" className="space-y-4 col-span-12 lg:col-span-6">
+        <section id="yarn" className="space-y-4 col-span-1 lg:col-span-6">
           {pattern.variants && pattern.variants.length > 0 && (
             <RecommendedYarn dict={dict} variants={pattern.variants} />
           )}
@@ -115,7 +115,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
       )}
 
       {(pattern.materials || pattern.hooks) && (
-        <section id="materials" className="space-y-4 col-span-12 lg:col-span-6">
+        <section id="materials" className="space-y-4 col-span-1 lg:col-span-6">
           <MaterialsList
             dict={dict}
             materials={pattern.materials}
