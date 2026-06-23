@@ -11,7 +11,7 @@ import { NestedDictionary } from "@/lib/interfaces";
 import Link from "@/components/Link";
 
 export default function MainMenu({ children }: { children: React.ReactNode }) {
-  const { dict } = useLang();
+  const { dict, lang } = useLang();
   const dictMainMenu = dict.mainMenu as NestedDictionary;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
           <div className="hidden md:flex items-center gap-8">
             <MainMenuLink
               href={`/patterns`}
-              isActive={pathname == "/patterns"}
+              isActive={pathname == `/${lang}/patterns`}
             >
               <span className="hidden sm:inline">
                 {dictMainMenu.patterns as string}
@@ -43,7 +43,7 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
             </MainMenuLink>
             <MainMenuLink
               href={`/about`}
-              isActive={pathname == `/about`}
+              isActive={pathname == `/${lang}/about`}
             >
               {dictMainMenu.about as string}
             </MainMenuLink>

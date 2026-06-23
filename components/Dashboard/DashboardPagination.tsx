@@ -101,6 +101,7 @@ export default function Pagination({
 
           return (
             <PageLink
+              aria-current={page === currentPage ? "page" : undefined}
               key={page}
               href={createPageURL(page)}
               isActive={page === currentPage}
