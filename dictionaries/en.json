@@ -34,7 +34,8 @@
     "skeinsUnit": "Skein(s)",
     "updatedTimestampTitle": "edited",
     "variantsSectionDescription": "Select the pattern variant",
-    "variantsSectionTitle": "Required Yarn"
+    "variantsSectionTitle": "Required Yarn",
+    "view": "View Details"
   },
   "notFound": {
     "back": "Back to home page",
@@ -92,7 +93,7 @@
     "footerCtaDesc": "Contact me directly on Telegram or VK with the design details, name, yarn type and colors, and your pattern will be a part of this project.",
     "footerCtaTitle": "Want your pattern to appear here?",
     "heroSubtitle": "Find patterns by name or yarn type, and effortlessly track custom versions of the exact same design pattern.",
-    "heroTitle": "The intelligent engine for handcrafted design."
+    "heroTitle": "The intelligent engine for handcrafted designs."
   },
   "featuredPatterns": {
     "badgeFree": "Free",
@@ -106,6 +107,7 @@
     "emptyDesc": "Our catalog is expanding quickly. If you are an amigurumi designer or knitting creator, send your pattern profile to feature it on our homepage.",
     "emptyImageAlt": "AI-generated bunny amigurumi pattern preview",
     "emptyTitle": "Your actual pattern could be here instead of an AI-generated one!",
+    "view": "View Details",
     "viewAll": "View All Patterns"
   }
 }
