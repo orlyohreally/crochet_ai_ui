@@ -89,7 +89,7 @@ export default function PatternListItem({
               href={`/patterns/${pattern.slug}`}
               className="text-gray-400 font-bold text-xs hover:text-pink-500 transition-colors"
             >
-              View Details
+              {dict.view}
             </Link>
           </div>
         </div>
