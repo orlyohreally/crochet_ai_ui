@@ -18,6 +18,7 @@ export default function PatternAuthor({author}: {author: Author}) {
                     src={author.profilePicture}
                     alt={author.fullName}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
                     className="object-cover"
                   />
                 ) : (

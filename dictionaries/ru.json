@@ -16,11 +16,11 @@
     "badgeFree": "Бесплатный",
     "badgePaid": "Платный",
     "buttonsMaterial": "Пуговицы",
-    "centimetersUnit": "см",
     "eyesMaterial": "Глазки",
     "findPatternAt": "Доступен в",
     "gramsUnit": "г",
     "hookSizesTitle": "Необходимые размеры крючков",
+    "sizeTile": "Размер готового изделия по главному варианту МК",
     "hooksSectionTitle": "Крючки",
     "isOptional": "Необязательно",
     "mainMaterialsTitle": "Основная пряжа",
@@ -28,6 +28,7 @@
     "materialsSectionTitle": "Необходимые материалы",
     "metersUnit": "м",
     "millimeterUnit": "мм",
+    "centimeterUnit": "см",
     "nosesMaterial": "Носики",
     "otherNotions": "Другие расходные материалы",
     "piecesUnit": "шт.",
@@ -36,7 +37,8 @@
     "updatedTimestampTitle": "изм.",
     "variantsSectionDescription": "Выберите вариант мастер-класса",
     "variantsSectionTitle": "Необходимая пряжа",
-    "view": "Просмотреть подробности"
+    "view": "Просмотреть подробности",
+    "finishedSizeLabel": "Размер"
   },
   "notFound": {
     "back": "На главную",
@@ -101,6 +103,7 @@
     "badgePaid": "Платный",
     "catalogSubtitle": "Знакомтесь с новыми схемами и мастер-классами.",
     "catalogTitle": "Избранные мастер-классы",
+    "centimeterUnit": "см",
     "difficultyEasy": "Простой",
     "difficultyMedium": "Средний",
     "emptyBadge": "Ищем схемы",

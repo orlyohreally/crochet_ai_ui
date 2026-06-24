@@ -15,11 +15,11 @@
     "badgeFree": "Free",
     "badgePaid": "Premium",
     "buttonsMaterial": "Buttons",
-    "centimetersUnit": "cm",
     "eyesMaterial": "Eyes",
     "findPatternAt": "View on",
     "gramsUnit": "gram(s)",
     "hookSizesTitle": "Required hook sizes",
+    "sizeTile": "Finished size of the primary variant of the pattern",
     "hooksSectionTitle": "Crochet Hooks",
     "isOptional": "Optional",
     "mainMaterialsTitle": "Main Yarn",
@@ -27,6 +27,7 @@
     "materialsSectionTitle": "Required Materials",
     "metersUnit": "meter(s)",
     "millimeterUnit": "mm",
+    "centimeterUnit": "cm",
     "nosesMaterial": "Noses",
     "otherNotions": "Other notions",
     "piecesUnit": "piece(s)",
@@ -35,7 +36,8 @@
     "updatedTimestampTitle": "edited",
     "variantsSectionDescription": "Select the pattern variant",
     "variantsSectionTitle": "Required Yarn",
-    "view": "View Details"
+    "view": "View Details",
+    "finishedSizeLabel": "Size"
   },
   "notFound": {
     "back": "Back to home page",
@@ -100,6 +102,7 @@
     "badgePaid": "Premium",
     "catalogSubtitle": "Explore recently added patterns.",
     "catalogTitle": "Featured Patterns",
+    "centimeterUnit": "cm",
     "difficultyEasy": "Easy",
     "difficultyMedium": "Medium",
     "emptyBadge": "Pattern Wanted",
