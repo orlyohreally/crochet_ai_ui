@@ -28,6 +28,10 @@ export const BRAND_MAP: Record<string, { label: string; style: string }> = {
         label: "WhatsApp",
         style: "border-emerald-100 bg-emerald-50/40 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-200",
     },
+    EIWI: {
+        label: "EIWI",
+        style: "border-gray-200 bg-gray-50/50 text-gray-700 hover:bg-gray-100 hover:border-gray-300",
+    },
     SITE: {
         label: "Personal Website",
         style: "border-gray-200 bg-gray-50/50 text-gray-700 hover:bg-gray-100 hover:border-gray-300",
