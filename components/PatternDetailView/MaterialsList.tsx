@@ -21,7 +21,11 @@ export default function MaterialsList({
   const eyes = materials.filter((m) => m.category === MATERIAL_TYPE.EYES);
   const noses = materials.filter((m) => m.category === MATERIAL_TYPE.NOSES);
   const buttons = materials.filter((m) => m.category === MATERIAL_TYPE.BUTTONS);
-  const notions = materials.filter((m) => m.category === MATERIAL_TYPE.NOTION);
+  const notions = materials.filter(
+    (m) =>
+      m.category === MATERIAL_TYPE.NOTION ||
+      m.category === MATERIAL_TYPE.FILLING,
+  );
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6 max-w-3xl">

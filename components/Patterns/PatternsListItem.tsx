@@ -62,7 +62,7 @@ export default function PatternListItem({
           ))}
         </div>
 
-        <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
+        <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 text-justify">
           {pattern.description}
         </p>
 
@@ -84,13 +84,21 @@ export default function PatternListItem({
         </div>
 
         <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between text-xs">
             <Link
               href={`/patterns/${pattern.slug}`}
-              className="text-gray-400 font-bold text-xs hover:text-pink-500 transition-colors"
+              className="text-gray-400 font-bold hover:text-pink-500 transition-colors"
             >
               {dict.view}
             </Link>
+            {pattern.mainVariantSizeSm && (
+              <span
+                className="font-bold text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-100"
+                title={dict.sizeTile}
+              >
+                {pattern.mainVariantSizeSm} {dict.centimeterUnit}
+              </span>
+            )}
           </div>
         </div>
       </div>

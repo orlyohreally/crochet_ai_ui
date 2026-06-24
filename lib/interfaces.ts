@@ -36,6 +36,7 @@ export interface CondensedPattern {
   hookSizes: string[];
   mainYarnBrand: string | null;
   mainYarnLineName: string | null;
+  mainVariantSizeSm: number;
 }
 
 export interface YarnBrand {
@@ -68,6 +69,8 @@ export interface PatternVariant {
   name: string;
   description: string | null;
   number: number;
+  sizeSm: number;
+  imageUrl: string;
   yarnColors: YarnColor[];
 }
 
@@ -85,6 +88,7 @@ export const MATERIAL_TYPE = {
   EYES: "eyes",
   NOSES: "noses",
   NOTION: "notion",
+  FILLING: "filling",
 } as const;
 
 export type MaterialType = typeof MATERIAL_TYPE[keyof typeof MATERIAL_TYPE];

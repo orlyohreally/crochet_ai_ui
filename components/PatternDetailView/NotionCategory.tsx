@@ -13,7 +13,7 @@ export default function NotionCategory({
 }) {
   function formatUnit(unitCode: string): string {
     const unit = {
-      cm: dict.centimetersUnit,
+      cm: dict.centimeterUnit,
       g: dict.gramsUnit,
       m: dict.metersUnit,
       mm: dict.millimeterUnit,
@@ -37,7 +37,7 @@ export default function NotionCategory({
       pcs: dict.piecesUnit,
       g: dict.gramsUnit,
       mm: dict.millimeterUnit,
-      cm: dict.centimetersUnit,
+      cm: dict.centimeterUnit,
       m: dict.metersUnit,
       none: "",
     }[unitCode] as string;
