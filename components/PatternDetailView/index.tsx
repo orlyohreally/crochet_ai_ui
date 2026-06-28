@@ -67,7 +67,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            {pattern.name}
+            {pattern.name}. {dict.crochetPatternTitlePostfix}
           </h1>
         </div>
 
