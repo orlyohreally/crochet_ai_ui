@@ -46,6 +46,7 @@ export default function NotionCategory({
 
   return (
     <div>
+      {/* TODO: transform into ul/li */}
       <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
         {categoryName}
       </h4>

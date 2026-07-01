@@ -15,6 +15,7 @@ import PatternImage from "./PatternImage";
 import MaterialsList from "./MaterialsList";
 import RecommendedYarn from "./RecommendedYarn";
 import PatternPurchaseSource from "./PatternPurchaseSources";
+import ShareButton from "../ShareButton";
 
 export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
   const { dict: useLangDict, lang } = useLang();
@@ -50,6 +51,7 @@ export default function PatternDetailView({ pattern }: { pattern: Pattern }) {
               <span className="text-xs uppercase tracking-wider font-semibold text-indigo-600 hover:underline">
                 {pattern.category.name}
               </span>
+              {/* <ShareButton /> */}
               <span className="text-slate-300 text-xs">•</span>
             </>
           )}

@@ -12,6 +12,20 @@ export interface Category {
   slug: string;
 }
 
+export interface SearchCategory extends Category {
+  patternCount: number;
+}
+
+export interface SearchLabel extends Label {
+  patternCount: number;
+}
+
+export interface SearchPatternLevel{
+  name: string;
+  slug: string;
+  patternCount: number;
+}
+
 export interface PurchaseSource {
   marketplace: "VKONTAKTE" | "BOOSTY" | "WHATSAPP" | "TELEGRAM" | "ETSY" | "RAVELRY" | "LOVECRAFTS" | "SITE";
   url: string;

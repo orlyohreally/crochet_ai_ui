@@ -36,7 +36,6 @@ export function LangProvider({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams()
-  console.log("pathname", pathname)
 
   const setLang = (newLang: Locale) => {
     if (newLang === lang) return;
