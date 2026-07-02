@@ -1,5 +1,5 @@
 "use client"; // TODO: it was not a client component
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import {
@@ -9,18 +9,15 @@ import {
   SearchPatternLevel,
 } from "@/lib/interfaces";
 
-import Dashboard from "@/components/Dashboard";
 import DashboardHeader from "./PatternsHeader";
 import EmptyPatternsList from "./EmptyPatternsList";
-import PatternList from "./PatternsList";
-import { COMPLEXITIES } from "./constants";
 import PatternListItem from "./PatternsListItem";
 import { useLang } from "@/context/LangContext";
-import CategoryFilter from "./CategoryFilter";
-import LabelsFilter from "./LabelsFilter";
-import PatternLevelFilter from "./PatternLevelFilter";
 import BooleanFilter from "./BooleanFilter";
-import CategoryFilter2 from "./CategoryFilter2";
+import MultiSelectorFilter from "./MultiSelectorFilter";
+import Pagination from "../Dashboard/DashboardPagination";
+import { SortBySelect } from "./SortBySelect";
+import { SORT_BY } from "./constants";
 
 export default function PatternsDashboard({
   categories,
@@ -28,31 +25,36 @@ export default function PatternsDashboard({
   pageSize,
   patternsDashboardData,
   patternLevels,
-  selectedIsFree,
-  initialCategory,
+  initialCategories,
   initialLabels = [],
   initialPatternLevels = [],
+  initialSortBy,
+  initialIsFree,
   page = 1,
 }: {
   categories: SearchCategory[];
   labels: SearchLabel[];
-  initialCategory: string | undefined;
+  initialCategories: string[];
   initialLabels: string[];
   patternLevels: SearchPatternLevel[];
   page: number;
   pageSize: number;
   patternsDashboardData: PatternDashboardData;
   initialPatternLevels: string[];
-  selectedIsFree?: boolean;
+  initialIsFree?: boolean;
+  initialSortBy?: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  console.log("initialLabels", initialLabels);
+
   const { dict } = useLang();
   const dictPatternItem = dict.patternItem as { [key: string]: string };
+  const dictPatternDashboard = dict.patternDashboard as {
+    [key: string]: string;
+  };
 
-  const totalItems = 7;
+  const totalItems = patternsDashboardData.count;
   const startItemIndex =
     totalItems === patternsDashboardData.totalPages
       ? 0
@@ -61,15 +63,18 @@ export default function PatternsDashboard({
 
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [sortBy, setSortBy] = useState("-created_at");
-  console.log("initialCategory", initialCategory);
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
-    initialCategory,
+  const [sortBy, setSortBy] = useState(initialSortBy);
+  const sortByOptions = Object.entries(SORT_BY).map(
+    ([sortByKey, { value }]) => ({ key: sortByKey, value }),
   );
+  console.log("Object.entries(SORT_BY)", Object.entries(SORT_BY), "sortByOptions", sortByOptions)
+
+  const [selectedCategories, setSelectedCategories] =
+    useState<string[]>(initialCategories);
   const [selectedLabels, setSelectedLabels] = useState<string[]>(initialLabels);
   const [selectedPatternLevels, setSelectedPatternLevels] =
     useState<string[]>(initialPatternLevels);
-  const [isFree, setIsFree] = useState<boolean | undefined>(selectedIsFree);
+  const [isFree, setIsFree] = useState<boolean | undefined>(initialIsFree);
 
   // UI Expandable Toggles
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
@@ -79,9 +84,9 @@ export default function PatternsDashboard({
   const [currentPage, setCurrentPage] = useState(1);
 
   const hasSelectedFilters =
-    selectedCategory ||
+    selectedCategories.length > 0 ||
     selectedLabels.length > 0 ||
-    selectedPatternLevels ||
+    selectedPatternLevels.length > 0 ||
     isFree !== undefined ||
     search;
   // selectedBrand ||
@@ -105,7 +110,6 @@ export default function PatternsDashboard({
     values: string[],
   ) {
     console.log("setSelectedLabels", values);
-    setSelectedLabels(values);
     const params = new URLSearchParams(searchParams.toString());
     params.delete(filterSlug);
 
@@ -118,7 +122,7 @@ export default function PatternsDashboard({
 
   function handleLabelsChange(labelsSlugs: string[]) {
     setSelectedLabels(labelsSlugs);
-    handleMultipleValueFilterChange("labels", labelsSlugs);
+    handleMultipleValueFilterChange("label", labelsSlugs);
   }
 
   function handlePatternLevelChange(levelsSlugs: string[]) {
@@ -141,9 +145,9 @@ export default function PatternsDashboard({
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
-  function handleCategoryChange(value?: string) {
-    setSelectedCategory(value);
-    handleSingleValueFilterChange("category", value);
+  function handleCategoryChange(labelsSlugs: string[]) {
+    setSelectedCategories(labelsSlugs);
+    handleMultipleValueFilterChange("category", labelsSlugs);
   }
 
   function handleAccessChange(value?: boolean) {
@@ -153,14 +157,13 @@ export default function PatternsDashboard({
   }
 
   function handleSortByChange(value: string) {
-    console.log("params.append(filterSlug, String(value));")
-    setSortBy(value)
-    const params = new URLSearchParams(searchParams.toString());
-    params.append("ordering", value);
+    console.log("params.append(filterSlug, String(value));");
+    setSortBy(value);
+    handleSingleValueFilterChange("ordering", value);
   }
 
   const clearAllFilters = () => {
-    setSelectedCategory(undefined);
+    setSelectedCategories([]);
     setSelectedLabels([]);
     setSelectedPatternLevels([]);
     setIsFree(undefined);
@@ -177,54 +180,69 @@ export default function PatternsDashboard({
   };
 
   return (
-    <div className="min-h-screen text-gray-900 antialiased font-sans bg-zinc-50/40">
+    <div className="text-gray-900 antialiased font-sans bg-zinc-50/40">
       <DashboardHeader
         search={search}
         handleSearchChange={setSearch}
-        itemsPerPage={pageSize}
-        handlePageSizeChange={handlePageSizeChange}
-        sortBy={sortBy}
-        handleSortByChange={handleSortByChange}
+        hasAiAccess={true}
+        onSendAiPrompt={(prompt) => {
+          console.log("AI Prompt:", prompt);
+        }}
       >
-        <div className="max-w-7xl mx-auto px-6 pb-4 pt-2 border-t border-gray-100 space-y-4">
-          {/* Categories Grid/Row */}
-          <CategoryFilter
-            categories={[...categories, ...categories]}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={handleCategoryChange}
+        <div className="max-w-7xl mx-auto px-6 pb-4 pt-2 border-t border-gray-100 flex gap-3 items-center  overflow-x-auto scrollbar-none w-full min-w-0">
+          <SortBySelect
+            dict={dictPatternDashboard}
+            sortBy={sortBy}
+            handleSortByChange={handleSortByChange}
+            sortByOptions={sortByOptions}
+          />
+          <BooleanFilter
+            filterLabel="Access"
+            undefinedValueLabel="All"
+            trueValueLabel="Free"
+            falseValueLabel="premium"
+            onValueChange={handleAccessChange}
+            value={isFree}
           />
 
-          {/* <CategoryFilter2
-            labels={labels}
-            selectedLabels={selectedLabels}
-            setSelectedLabels={handleLabelsChange}
-          /> */}
+          <div className="h-4 w-px bg-gray-200 shrink-0"></div>
 
-          {/* Labels Grid/Row */}
-          <LabelsFilter
-            labels={labels}
-            selectedLabels={selectedLabels}
-            setSelectedLabels={handleLabelsChange}
+          <MultiSelectorFilter
+            selectorLabel="Categories"
+            allSelectedLabel="All Categories"
+            options={categories}
+            selectedOptions={selectedCategories}
+            setSelectedOptions={handleCategoryChange}
+            renderOption={(category) => (
+              <span className="text-xs font-medium text-gray-600">
+                {category.patternCount}
+              </span>
+            )}
           />
-          {/* Global Meta Line: Complexity, Access & Advanced Trigger */}
-          <div className="flex flex-wrap items-center justify-between gap-y-3 pt-2 border-t border-zinc-100">
-            <div className="flex flex-wrap items-center gap-6">
-              <PatternLevelFilter
-                patternLevels={patternLevels}
-                selectedPatternLevels={selectedPatternLevels}
-                setSelectedPatternLevels={handlePatternLevelChange}
-              />
-
-              <BooleanFilter
-                filterLabel="Access"
-                undefinedValueLabel="All"
-                trueValueLabel="Free"
-                falseValueLabel="premium"
-                onValueChange={handleAccessChange}
-                value={isFree}
-              />
-            </div>
-          </div>
+          <MultiSelectorFilter
+            selectorLabel="Labels"
+            allSelectedLabel="All Labels"
+            options={labels}
+            selectedOptions={selectedLabels}
+            setSelectedOptions={handleLabelsChange}
+            renderOption={(label) => (
+              <span className="text-xs font-medium text-gray-600">
+                {label.patternCount}
+              </span>
+            )}
+          />
+          <MultiSelectorFilter
+            selectorLabel="Levels"
+            allSelectedLabel="All Levels"
+            options={patternLevels}
+            selectedOptions={selectedPatternLevels}
+            setSelectedOptions={handlePatternLevelChange}
+            renderOption={(level) => (
+              <span className="text-xs font-medium text-gray-600">
+                {level.patternCount}
+              </span>
+            )}
+          />
         </div>
       </DashboardHeader>
       <div className="max-w-7xl mx-auto px-6 py-6 space-y-6">
@@ -248,6 +266,11 @@ export default function PatternsDashboard({
           </div>
         )}
       </div>
+      <Pagination
+        totalItems={totalItems}
+        currentPage={page}
+        pageSize={pageSize}
+      />
     </div>
   );
 }

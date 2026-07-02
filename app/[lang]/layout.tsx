@@ -42,7 +42,8 @@ export default async function RootLayout({
       lang={lang}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-slate-50/30 m-0 p-0">
+      {/*  grid grid-rows-[auto_1fr_auto] */}
+      <body className="min-h-screen flex flex-col bg-slate-50/30 m-0 p-0">
         <LangProvider initialLang={lang} initialDict={translationDict}>
           <MainMenu>
             <LanguageSwitcher />

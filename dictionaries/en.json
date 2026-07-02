@@ -8,7 +8,11 @@
     "clearFilters": "Clear all filters",
     "emptyDescription": "We couldn't find any matching crochet patterns. Try adjusting your search filters or browse our classic collections.",
     "emptyTitle": "No patterns found",
-    "itemsPerPage": "Items per page"
+    "itemsPerPage": "Items per page",
+    "createdAsc": "Oldest first",
+    "createdDesc": "Newest first",
+    "nameAsc": "Name A-Z",
+    "nameDesc": "Name Z-A"
   },
   "patternItem": {
     "aboutTitle": "About this pattern",

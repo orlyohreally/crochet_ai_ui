@@ -11,11 +11,11 @@ import LoadingPatternsList from "./loading";
 import PatternsDashboard from "@/components/Patterns/PatternsDashboard";
 import { Locale } from "@/i18n.config";
 import {
-  Category,
   SearchCategory,
   SearchLabel,
   SearchPatternLevel,
 } from "@/lib/interfaces";
+import { SORT_BY_OPTIONS } from "@/components/Patterns/constants";
 
 function parsePositiveInteger(value: string, fallback: number) {
   const parsedValue = parseInt(value, 10);
@@ -23,11 +23,6 @@ function parsePositiveInteger(value: string, fallback: number) {
     return fallback;
   }
   return parsedValue;
-}
-
-interface GuardedFilters {
-  labels: string[];
-  category?: string; // Guaranteed to be a single string
 }
 
 function guardQueryParam(
@@ -55,11 +50,34 @@ function guardQueryParam(
   };
 }
 
+function guardBooleanQueryParam(
+  searchParamValue: string | string[] | undefined,
+  fallbackValue: boolean | undefined,
+) {
+  if (searchParamValue === undefined) {
+    return { value: undefined, hasInvalidValues: false };
+  }
+  if (Array.isArray(searchParamValue)) {
+    return { value: fallbackValue, hasInvalidValues: true };
+  }
+
+  const normalized = searchParamValue.toLowerCase().trim();
+
+  if (normalized === "true" || normalized === "1")
+    return { value: true, hasInvalidValues: false };
+  if (normalized === "false" || normalized === "0")
+    return { value: false, hasInvalidValues: false };
+
+  return {
+    value: fallbackValue,
+    hasInvalidValues: true,
+  };
+}
+
 function guardListQueryParam(
   searchParamValue: string | string[] | undefined,
   validValues: string[],
 ): { values: string[]; hasInvalidValues: boolean } {
-  console.log("guardListQueryParam", searchParamValue, "--", validValues);
   if (searchParamValue === undefined) {
     return { values: [], hasInvalidValues: false };
   }
@@ -73,7 +91,7 @@ function guardListQueryParam(
   const safeValidValues = Array.from(
     new Set(safeValues.filter((value) => validValues.includes(value))),
   );
-  console.log("safeValidValues", safeValidValues, "safeValues", safeValues);
+
   return {
     values: safeValidValues,
     hasInvalidValues: safeValidValues.length !== safeValues.length,
@@ -91,9 +109,11 @@ export default async function Patterns({
     level: string[];
     isFree?: string;
     category?: string;
+    ordering?: string;
   }>;
   params: Promise<{ lang: string }>;
 }) {
+  console.log("------PAGE RELOAD-----");
   const { lang } = await params;
 
   const {
@@ -102,7 +122,9 @@ export default async function Patterns({
     label: selectedLabels,
     isFree,
     level: selectedPatternLevel,
-    category: selectedCategory,
+    category: selectedCategories,
+    ordering: selectedSortBy,
+    ...unsupportedParams
   } = await searchParams;
 
   let categoriesList = [] as SearchCategory[];
@@ -119,48 +141,49 @@ export default async function Patterns({
     console.log(err);
   }
 
-  // http://localhost:3000/en/patterns?category=animals&level=easy&label=amigurumi&level=easy
-
   const currentPage = parsePositiveInteger(page, 1);
   const currentPageSize = parsePositiveInteger(pageSize, 20);
-  let selectedIsFree;
-  if (isFree === "false") {
-    selectedIsFree = false;
-  } else if (isFree !== "undefined" && isFree != undefined && isFree != "") {
-    selectedIsFree = true;
-  }
+
+  const { value: initialIsFree, hasInvalidValues: hasInvalidIsFreeParam } =
+    guardBooleanQueryParam(isFree, undefined);
 
   const {
-    value: initialCategory,
-    hasInvalidValues: hasInvalidCategoryParamValid,
-  } = guardQueryParam(
-    selectedCategory,
+    values: initialCategories,
+    hasInvalidValues: hasInvalidCategoryParam,
+  } = guardListQueryParam(
+    selectedCategories,
     categoriesList.map((searchCategory: SearchCategory) => searchCategory.slug),
   );
 
   const {
     values: initialPatternLevels,
-    hasInvalidValues: hasInvalidPatternLevelsParamValid,
+    hasInvalidValues: hasInvalidPatternLevelsParam,
   } = guardListQueryParam(
     selectedPatternLevel,
     patternLevelsList.map((level) => level.slug),
   );
 
-  const {
-    values: initialLabels,
-    hasInvalidValues: hasInvalidLabelsParamValid,
-  } = guardListQueryParam(
-    selectedLabels,
-    labelsList.map((label) => label.slug),
-  );
+  const { values: initialLabels, hasInvalidValues: hasInvalidLabelsParam } =
+    guardListQueryParam(
+      selectedLabels,
+      labelsList.map((label) => label.slug),
+    );
 
-  console.log("initialLabels", initialLabels)
+  const { value: initialSortBy, hasInvalidValues: hasInvalidSortByParam } =
+    guardQueryParam(selectedSortBy, SORT_BY_OPTIONS);
 
+  console.log("initialSortBy", initialSortBy, hasInvalidSortByParam);
 
   const cleanParams = new URLSearchParams();
 
-  if (initialCategory) {
-    cleanParams.append("category", initialCategory);
+  if (initialIsFree !== undefined) {
+    cleanParams.set("isFree", initialIsFree.toString());
+  }
+
+  if (initialCategories) {
+    initialCategories.forEach((category) => {
+      cleanParams.append("category", category);
+    });
   }
 
   if (initialPatternLevels) {
@@ -171,18 +194,20 @@ export default async function Patterns({
 
   if (initialLabels) {
     initialLabels.forEach((label) => {
-      console.log("append labels", label)
       cleanParams.append("label", label);
     });
   }
 
   const queryString = cleanParams.toString();
-  console.log("QUERY_STRING", queryString);
+
   const toRedirect =
-    hasInvalidCategoryParamValid ||
-    hasInvalidPatternLevelsParamValid ||
-    hasInvalidLabelsParamValid;
-  if (toRedirect) {
+    hasInvalidCategoryParam ||
+    hasInvalidPatternLevelsParam ||
+    hasInvalidLabelsParam ||
+    hasInvalidIsFreeParam ||
+    hasInvalidSortByParam;
+
+  if (toRedirect || Object.keys(unsupportedParams).length > 0) {
     console.log("REDIRECT", `/patterns${queryString ? `?${queryString}` : ""}`);
     redirect(`/patterns${queryString ? `?${queryString}` : ""}`);
   }
@@ -191,6 +216,7 @@ export default async function Patterns({
     patternsList = await patterns({
       page: currentPage,
       pageSize: currentPageSize,
+      queryString,
       lang: lang as Locale,
     });
   } catch (error) {
@@ -210,7 +236,7 @@ export default async function Patterns({
       <Suspense fallback={<LoadingPatternsList />}>
         <PatternsDashboard
           categories={categoriesList}
-          initialCategory={initialCategory}
+          initialCategories={initialCategories}
           initialLabels={initialLabels}
           initialPatternLevels={initialPatternLevels}
           labels={labelsList}
@@ -218,7 +244,8 @@ export default async function Patterns({
           pageSize={currentPageSize}
           patternLevels={patternLevelsList}
           patternsDashboardData={patternsList}
-          selectedIsFree={selectedIsFree}
+          initialIsFree={initialIsFree}
+          initialSortBy={selectedSortBy}
         />
       </Suspense>
     </div>

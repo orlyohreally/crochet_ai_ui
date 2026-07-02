@@ -1,4 +1,3 @@
-
 import { redirect } from "next/navigation";
 
 import { patterns } from "@/lib/patterns";
@@ -33,6 +32,7 @@ export default async function Patterns({
       page: currentPage,
       pageSize: currentPageSize,
       lang: lang as Locale,
+      queryString: "",
     });
   } catch (error) {
     if (error instanceof Error && error.message === "INVALID_PAGE") {
@@ -45,24 +45,24 @@ export default async function Patterns({
       throw error;
     }
   }
-  let categoriesList = [] as SearchCategory[]
+  let categoriesList = [] as SearchCategory[];
   try {
     categoriesList = await categories({
       lang: lang as Locale,
     });
-  }catch(error) {
-console.log(error)
+  } catch (error) {
+    console.log(error);
   }
 
   return (
     <div>
       {/* <Suspense fallback={<LoadingPatternsList />}> */}
-        <PatternsDashboard2
-          page={currentPage}
-          pageSize={currentPageSize}
-          patternsDashboardData={patternsList}
-          categories={categoriesList}
-        />
+      <PatternsDashboard2
+        page={currentPage}
+        pageSize={currentPageSize}
+        patternsDashboardData={patternsList}
+        categories={categoriesList}
+      />
       {/* </Suspense> */}
     </div>
   );

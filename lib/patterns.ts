@@ -2,7 +2,7 @@ import { Locale } from "@/i18n.config";
 import { PatternDashboardData } from "./interfaces";
 import { clientFetch } from "./proxy";
 
-export async function patterns({ page, pageSize, lang }: { page: number; pageSize: number, lang: Locale }): Promise<PatternDashboardData> {
+export async function patterns({ page, pageSize, lang, queryString }: { page: number; pageSize: number, lang: Locale, queryString: string }): Promise<PatternDashboardData> {
     const urlParams = new URLSearchParams({
         page: page.toString(),
         page_size: pageSize.toString()
@@ -12,8 +12,8 @@ export async function patterns({ page, pageSize, lang }: { page: number; pageSiz
     if (!apiBaseUrl) {
         return Promise.reject(new Error("API_BASE_URL_NOT_CONFIGURED"));
     }
-
-    const response = await clientFetch({endpoint: `/pattern-builder/patterns/?${urlParams.toString()}`, lang});
+    console.log(`/pattern-builder/patterns/?${queryString}`)
+    const response = await clientFetch({ endpoint: `/pattern-builder/patterns/?${queryString}`, lang });
 
     if (!response.ok) {
         if (response.status === 404) {
@@ -23,8 +23,9 @@ export async function patterns({ page, pageSize, lang }: { page: number; pageSiz
                 return Promise.reject(new Error("INVALID_PAGE"));
             }
         }
-
         return Promise.reject(new Error("UNEXPECTED_ERROR"));
     }
-    return response.json();
+    const a = await response.json();
+    // console.log(a.results.map((pattern) => pattern.name))
+    return a;
 }

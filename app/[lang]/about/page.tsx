@@ -9,6 +9,7 @@ export default function AboutPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 md:py-20">
+      
       {/* Hero Header Section */}
       <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">

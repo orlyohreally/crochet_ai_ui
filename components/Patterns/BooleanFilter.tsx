@@ -15,11 +15,7 @@ export default function BooleanFilter({
 }) {
     console.log("value", value)
   return (
-    <div className="flex items-center gap-2">
-       <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
-        {filterLabel}
-      </span>
-
+    <div className="flex items-center shrink-0">
       <div
         role="radiogroup"
         aria-label={filterLabel}

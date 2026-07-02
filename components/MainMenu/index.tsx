@@ -91,7 +91,7 @@ export default function MainMenu({ children }: { children: React.ReactNode }) {
             <MobileMainMenuLink href={`/patterns`}>
               {dictMainMenu.patterns as string}
             </MobileMainMenuLink>
-            <MobileMainMenuLink href={`/about}`}>
+            <MobileMainMenuLink href={`/about`}>
               {dictMainMenu.about as string}
             </MobileMainMenuLink>
           </div>
